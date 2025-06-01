@@ -1,5 +1,7 @@
 // import {divOne} from "./home.js"
+import { TodoItem as ToDo } from "./toDoClass.js"
 import { createNew} from "./newItem.js";
+import { setNewCategory, changeCategory } from "./manageCategories.js"
 
 
 
@@ -15,10 +17,11 @@ const buttonThree = navButtons[2];
 
 
 // content.appendChild(home());
-console.log(createNew('Mow','Backyard onbly','12/11/25','Low','','incomplete','Home'))
+// console.log(createNew('Mow','Backyard onbly','12/11/25','Low','','incomplete','Home'))
 
 
 
 console.log("Working");
 
 window.createNew = createNew;
+window.ToDo = ToDo;
