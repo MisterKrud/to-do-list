@@ -16,7 +16,7 @@ const createNew = (
   title,
   description,
   dueDate = format(new Date(), "dd/MM/yy"),
-  priority = medium,
+  priority = 'medium',
   notes = "",
   complete = false,
   category = "Default"
@@ -43,17 +43,18 @@ const createNew = (
 
 // const deleteItem = splice(TodoItem.items(n))
 
-createNew('Sweep','With a broom','12/10/25','High');
-createNew('Mow','Backyard onbly','12/11/25','Low','','incomplete','Home')
-createNew('Clean car','Use car wash',undefined,'','','incomplete','Home')
-createNew('Sweep again','With a broom','12/10/25','High');
-createNew('Trim','Front yard with whippersnipper','12/11/25','Low','','incomplete','Home')
-createNew('Vacuum','Kitchen and Laundry',undefined,'','','incomplete','Home')
-console.log('From newItem.js')
-console.table(ToDo.items)
 
 
 
+// console.log('createNew tests');
+// createNew('Sweep','With a broom','12/10/25','High');
+// createNew('Mow','Backyard onbly','12/11/25','Low','','incomplete','Home')
+// createNew('Clean car','Use car wash',undefined,'','','incomplete','Home')
+// createNew('Sweep again','With a broom','12/10/25','High');
+// createNew('Trim','Front yard with whippersnipper','12/11/25','Low','','incomplete','Home')
+// createNew('Vacuum','Kitchen and Laundry',undefined,'','','incomplete','Home')
+
+// console.log(`Create new task: ${createNew('Load dishwasher', '', undefined , undefined , true, 'Home')}`);
 
 export { createNew, format}
 

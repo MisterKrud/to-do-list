@@ -19,8 +19,8 @@ export class TodoItem {
     this.id = crypto.randomUUID();
   }
 
-  static items = [];
-  static deletedItems = [];
+//   static items = [];
+//   static deletedItems = [];
   // static category = ["Default"];
 
   static priority = ["Low", "Medium", "High", "Urgent"];

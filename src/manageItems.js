@@ -3,6 +3,9 @@ import { TodoItem as ToDo } from "./toDoClass.js";
 export const items = [];
 export const deletedItems = [];
 
-const deleteItems = (n) => {
-    deletedItems = items.splice(n, 1);
-}
+export const deleteItems = (n) =>  items.splice(n, 1);
+
+
+// console.log(`Test manageItems: `);
+// console.log(`Delete Vacuum: ${deleteItems(5)}`);
+// console.table(items);
