@@ -1,3 +1,5 @@
+import { lightFormat, parseISO } from "date-fns";
+
 export class TodoItem {
   constructor(
     title,
@@ -33,19 +35,13 @@ export class TodoItem {
   }
 
 
-newpriority(value) {
-  this.priority = value;
-}
 
-newDueDate(newDate) {
-  this.dueDate = newDate
-}
 
-  checkCategory(value) {
-    if (this.category.includes(value) == false) {
-      this.category.push(value);
-    }
-  }
+//   checkCategory(value) {
+//     if (this.category.includes(value) == false) {
+//       this.category.push(value);
+//     }
+//   }
 
   // setNewCategory(categoryName) {
   //   this.category.push(categoryName);

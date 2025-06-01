@@ -1,8 +1,11 @@
 // import {divOne} from "./home.js"
 import { TodoItem as ToDo } from "./toDoClass.js"
+
 import { createNew} from "./newItem.js";
 import { deleteItems, items} from "./manageItems.js"
 import { setNewCategory, changeCategory, categories } from "./manageCategories.js"
+import { changeDueDate, dateIsPast } from "./manageDueDates.js";
+
 
 
 
@@ -25,12 +28,12 @@ const buttonThree = navButtons[2];
 console.log("Working");
 
 console.log('createNew tests');
-createNew('Sweep','With a broom','12/10/25','High');
-createNew('Mow','Backyard onbly','12/11/25','Low','','incomplete','Home')
-createNew('Clean car','Use car wash',undefined,'','','incomplete','Home')
-createNew('Sweep again','With a broom','12/10/25','High');
-createNew('Trim','Front yard with whippersnipper','12/11/25','Low','','incomplete','Home')
-createNew('Vacuum','Kitchen and Laundry',undefined,'','','incomplete','Home')
+createNew('Sweep','With a broom','2025-05-31','High');
+createNew('Mow','Backyard onbly','2025-05-16','Low','',undefined,'Home')
+createNew('Clean car','Use car wash',undefined,'','',true,'Home')
+createNew('Sweep again','With a broom','2025-10-12','High');
+createNew('Trim','Front yard with whippersnipper','2025-06-14','Low','',undefined,'Home')
+createNew('Vacuum','Kitchen and Laundry',undefined,'','',true,'Home')
 console.table(items);
 
 
@@ -44,6 +47,10 @@ console.log(`Test manageItems: `);
 console.log(`Delete 'Sweep again': ${deleteItems(3)}`);
 console.table(items);
 
+console.log(`Test changeDueDate: Mow ${changeDueDate(1, '2025-07-28')}`)
+
+console.table(items);
+console.log(`Test past date - Clean car: ${dateIsPast(2)}`)
 
 
 

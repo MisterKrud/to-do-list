@@ -1,6 +1,6 @@
 
 //Date formatter
-import {format } from "date-fns";
+import {lightFormat, parseISO } from "date-fns";
 import { TodoItem  as ToDo } from "./toDoClass.js";
 import { categories } from "./manageCategories.js"
 import { items } from "./manageItems.js"
@@ -15,7 +15,7 @@ const today = Date.now().toLocaleString("en-AU")
 const createNew = (
   title,
   description,
-  dueDate = format(new Date(), "dd/MM/yy"),
+  dueDate = lightFormat(new Date(), "d/M/yy"),
   priority = 'medium',
   notes = "",
   complete = false,
@@ -29,7 +29,7 @@ const createNew = (
     new ToDo(
       title,
       description,
-      dueDate,
+      lightFormat(dueDate, "d/M/yy"),
       priority,
       notes,
       complete,
@@ -56,6 +56,6 @@ const createNew = (
 
 // console.log(`Create new task: ${createNew('Load dishwasher', '', undefined , undefined , true, 'Home')}`);
 
-export { createNew, format}
+export { createNew}
 
 
