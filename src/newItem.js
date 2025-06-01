@@ -8,8 +8,26 @@ class TodoItem {
         this.priority = priority;
         this.notes = notes;
         this.complete = complete;
-        this.category = category;
+        this.category = category
 }
+
+static items = []
+static category = ['Default']
+
+static priority = ['Low', 'Medium', 'High', 'Urgent']
+
+checkCategory(value) {
+
+  if (this.category.includes(value)==false){
+    this.category.push(value)
+  }
+}
+
+
+setnewCategory(categoryName) {
+  this.category.push(categoryName)
+} 
+
 
 }
 
@@ -23,8 +41,12 @@ const createNew = (
   notes = '',
   complete = false,
   category = 'Default'
-) =>
-  new TodoItem(
+) => {
+  if(TodoItem.category.includes(category) == false){
+    TodoItem.category.push(category)
+    console.log(TodoItem.category)
+  } 
+ return new TodoItem(
     title,
     description,
     dueDate,
@@ -32,11 +54,13 @@ const createNew = (
     notes,
     complete,
     category
-  );
+  )
+
+};
 
 console.table(createNew('Sweep','With a broom','12/10/25','High'));
 
 
-export { createNew }
+export { createNew}
 
 
