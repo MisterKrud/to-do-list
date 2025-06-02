@@ -5,6 +5,10 @@ import { createNew} from "./newItem.js";
 import { deleteItems, items} from "./manageItems.js"
 import { setNewCategory, changeCategory, categories } from "./manageCategories.js"
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
+import { getItemsFromStorage } from "./saveItems.js";
+
+// import { checkStorage } from "./saveItems.js";
+
 
 
 
@@ -26,31 +30,43 @@ const buttonThree = navButtons[2];
 
 
 console.log("Working");
+console.log(`Populate session table`)
+getItemsFromStorage();
 
 console.log('createNew tests');
-createNew('Sweep','With a broom','2025-05-31','High');
-createNew('Mow','Backyard onbly','2025-05-16','Low','',undefined,'Home')
-createNew('Clean car','Use car wash',undefined,'','',true,'Home')
-createNew('Sweep again','With a broom','2025-10-12','High');
-createNew('Trim','Front yard with whippersnipper','2025-06-14','Low','',undefined,'Home')
-createNew('Vacuum','Kitchen and Laundry',undefined,'','',true,'Home')
+// createNew('Sweep','With a broom','2025-05-31','High');
+// createNew('Mow','Backyard onbly','2025-05-16','Low','',undefined,'Home')
+// createNew('Clean car','Use car wash',undefined,'','',true,'Home')
+// createNew('Sweep again','With a broom','2025-10-12','High');
+// createNew('Trim','Front yard with whippersnipper','2025-06-14','Low','',undefined,'Home')
+// createNew('Vacuum','Kitchen and Laundry',undefined,'','',true,'Home')
 console.table(items);
 
 
-console.log(`Manage categories tests:`)
-console.log(`Create new category: ${setNewCategory('Home')}`)
-console.log(`Change category for 'Mow': ${changeCategory(1, "Home")}`)
-console.log(`Change and set new category for Trim: ${changeCategory(4, 'Yard')}`)
-console.table(categories);
+// console.log(`Manage categories tests:`)
+// console.log(`Create new category: ${setNewCategory('Home')}`)
+// console.log(`Change category for 'Mow': ${changeCategory(1, "Home")}`)
+// console.log(`Change and set new category for Trim: ${changeCategory(4, 'Yard')}`)
+// console.table(categories);
 
-console.log(`Test manageItems: `);
-console.log(`Delete 'Sweep again': ${deleteItems(3)}`);
-console.table(items);
+// console.log(`Test manageItems: `);
+// console.log(`Delete 'Sweep again': ${deleteItems(3)}`);
+// console.table(items);
 
-console.log(`Test changeDueDate: Mow ${changeDueDate(1, '2025-07-28')}`)
+// console.log(`Test changeDueDate: Mow ${changeDueDate(1, '2025-07-28')}`)
 
-console.table(items);
-console.log(`Test past date - Clean car: ${dateIsPast(2)}`)
+// console.table(items);
+// console.log(`Test past date - Clean car: ${dateIsPast(2)}`)
+
+console.log(`Test save function`);
+
+// console.log(items[2])
+// checkStorage(items[0]);
+// localStorage.clear();
+
+console.table(localStorage)
+console.log(localStorage.length)
+
 
 
 
@@ -60,4 +76,5 @@ console.log(`Test past date - Clean car: ${dateIsPast(2)}`)
 window.createNew = createNew;
 window.ToDo = ToDo;
 window.items = items;
+// window.save = checkStorage;
 

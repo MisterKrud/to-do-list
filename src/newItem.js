@@ -4,6 +4,7 @@ import {lightFormat, parseISO } from "date-fns";
 import { TodoItem  as ToDo } from "./toDoClass.js";
 import { categories } from "./manageCategories.js"
 import { items } from "./manageItems.js"
+import { saveItem as save } from "./saveItems.js"
 
 
 //To-Do Item class
@@ -36,7 +37,7 @@ const createNew = (
       category
     )
   );
-
+  save(items[items.length-1])
   return newItem;
 };
 
