@@ -12,6 +12,7 @@ export const setNewCategory = (categoryName) =>  categories.push(categoryName);
     
 export const  changeCategory = (n, newCategory) => items[n].category = newCategory;
 
+
     
  
 // Object.assign(Todos.prototype, setNewCategory, changeCategory)

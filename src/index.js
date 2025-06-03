@@ -2,10 +2,10 @@
 import { TodoItem as ToDo } from "./toDoClass.js"
 
 import { createNew} from "./newItem.js";
-import { deleteItems, items} from "./manageItems.js"
+import { deleteToDoItem, saveItem as save, items, getItemsFromStorage} from "./manageItems.js"
 import { setNewCategory, changeCategory, categories } from "./manageCategories.js"
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
-import { getItemsFromStorage } from "./saveItems.js";
+
 
 // import { checkStorage } from "./saveItems.js";
 
@@ -33,14 +33,13 @@ console.log("Working");
 console.log(`Populate session table`)
 getItemsFromStorage();
 
-console.log('createNew tests');
+console.log('createNew test');
 // createNew('Sweep','With a broom','2025-05-31','High');
-// createNew('Mow','Backyard onbly','2025-05-16','Low','',undefined,'Home')
-// createNew('Clean car','Use car wash',undefined,'','',true,'Home')
+// createNew('Mow','Backyard onbly','2025-05-16','Low','',undefined,'Home');
+// createNew('Clean car','Use car wash',undefined,'','',true,'Home');
 // createNew('Sweep again','With a broom','2025-10-12','High');
-// createNew('Trim','Front yard with whippersnipper','2025-06-14','Low','',undefined,'Home')
-// createNew('Vacuum','Kitchen and Laundry',undefined,'','',true,'Home')
-console.table(items);
+// createNew('Trim','Front yard with whippersnipper','2025-06-14','Low','',undefined,'Home');
+// createNew('Vacuum','Kitchen and Laundry',undefined,'','',true,'Home');
 
 
 // console.log(`Manage categories tests:`)
@@ -64,17 +63,19 @@ console.log(`Test save function`);
 // checkStorage(items[0]);
 // localStorage.clear();
 
+
 console.table(localStorage)
-console.log(localStorage.length)
+
 
 
 
 
 // console.log('From newItem.js')
-// console.table(items)
+console.table(items)
 
 window.createNew = createNew;
 window.ToDo = ToDo;
 window.items = items;
-// window.save = checkStorage;
+window.save = save;
+   window.deleteToDoItem = deleteToDoItem
 

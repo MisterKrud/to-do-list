@@ -3,8 +3,8 @@
 import {lightFormat, parseISO } from "date-fns";
 import { TodoItem  as ToDo } from "./toDoClass.js";
 import { categories } from "./manageCategories.js"
-import { items } from "./manageItems.js"
-import { saveItem as save } from "./saveItems.js"
+import { items, saveItem as save } from "./manageItems.js"
+
 
 
 //To-Do Item class
