@@ -7,22 +7,80 @@ import {items} from "./manageItems.js"
 
 const categories = ['Default']
 
+export const populateCategories = () => {
+    items.forEach(item => {
+        if (!categories.includes(item.category)){
+        categories.push(item.category)
+        }
+        console.log(`Categories: ${item.category}`)
+    })
+    console.table(categories)
+     categories.sort();
+    let n = categories.indexOf('Default')
+    categories.splice(n, 1);
+    categories.unshift('Default');
+
+};
+
 
 export const setNewCategory = (categoryName) =>  categories.push(categoryName);
     
 export const  changeCategory = (n, newCategory) => items[n].category = newCategory;
 
 
-    
- 
-// Object.assign(Todos.prototype, setNewCategory, changeCategory)
+export const filter = (cat) => {
+  const filteredCat = [];
+//   console.table(filteredCat);
+  items.forEach((item) => {
+    if (item.category === cat) {
+      filteredCat.push(item);
+      console.log(item);
+    }
+  });
+//   console.table(filteredCat);
+};
 
 
+// export const sortProjects = () => items.sort((a,b) => {
+//  let x = a.category.toLowerCase();
+//  let y = b.category.toLowerCase();
+//  if (x<y) {return -1}
+//  if (x>y) {return 1}
+//  let n = items.category.indexOf('Default');
 
-// console.log(`Manage categories tests:`)
-// console.log(`Create new category: ${setNewCategory('Home')}`)
-// console.log(`Change category for 'Mow': ${changeCategory(1, "Home")}`)
-// console.log(`Change and set new category for Trim: ${changeCategory(4, 'Yard')}`)
+
+// }
+
+// );
+
 
 export {categories}
 // console.log(Todos.items)
+
+/*
+const obj = {
+  name: 'John Doe',
+  age: 30,
+  city: 'New York',
+  occupation: 'Engineer'
+};
+
+// Filter by value type
+const filteredByValueType = Object.fromEntries(
+  Object.entries(obj).filter(([key, value]) => typeof value === 'string')
+);
+console.log(filteredByValueType); // Output: { name: 'John Doe', city: 'New York', occupation: 'Engineer' }
+
+//Filter by key
+const filteredByKey = Object.fromEntries(
+    Object.entries(obj).filter(([key]) => key.includes('name') || key.includes('city'))
+)
+console.log(filteredByKey) // Output: { name: 'John Doe', city: 'New York' }
+
+// Filter by key-value pair
+const filteredByKeyValue = Object.fromEntries(
+  Object.entries(obj).filter(([key, value]) => key === 'age' && value > 25)
+);
+console.log(filteredByKeyValue); // Output: { age: 30 }
+
+*/

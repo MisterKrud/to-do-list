@@ -24,7 +24,7 @@ const createNew = (
 ) => {
   if (categories.includes(category) == false) {
    
-    category = "Default"
+    categories.push(category)
   }
   let newItem = items.push(
     new ToDo(
