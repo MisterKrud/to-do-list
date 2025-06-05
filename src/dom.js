@@ -2,9 +2,10 @@ import { items } from "./manageItems";
 
 const page = () => {
 const content = document.getElementById("content");
-const itemContainer = document.createElement("div")
+const itemContainer = document.createElement("div");
+itemContainer.setAttribute("id", "item-container")
 content.appendChild(itemContainer);
-itemContainer.innerText = 'InnerText test'
+
 
 
 console.log(`items in dom.js: ${items}`)
@@ -13,23 +14,26 @@ console.log(`items in dom.js: ${items}`)
         const itemCard = document.createElement("div");
         itemCard.setAttribute("class", "item-card");
         itemCard.setAttribute("id", item.id);
-        const title = document.createElement("div");
+        const title = document.createElement("h4")
         title.textContent = item.title;
-        const description = document.createElement("div")
+        const itemContent = document.createElement("div")
+        itemContent.setAttribute("class", "item-content")
+        const description = document.createElement("p")
         description.textContent = item.description;
-        const dueDate = document.createElement("div")
+        const dueDate = document.createElement("p")
         dueDate.textContent = item.dueDate;
-        const priority = document.createElement("div");
+        const priority = document.createElement("p");
         priority.textContent = item.priority;
-        const notes = document.createElement("div");
+        const notes = document.createElement("p");
         priority.textContent = item.priority;
-        const complete = document.createElement("div");
+        const complete = document.createElement("p");
         complete.setAttribute("class", () => item.complete ? "complete" : "incomplete");
-        const category = document.createElement("div");
+        const category = document.createElement("p");
         category.textContent = item.category;
         itemContainer.appendChild(itemCard);
         // itemCard.appendChild(title)
-        itemCard.append(title,description,dueDate,notes,priority,complete,category)
+        itemCard.append(title,itemContent)
+        itemContent.append(description,dueDate,notes,priority,complete,category)
     }
     )
 

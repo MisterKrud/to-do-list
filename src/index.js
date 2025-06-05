@@ -1,4 +1,4 @@
-// import {divOne} from "./home.js"
+import "./styles.css"
 import { TodoItem as ToDo } from "./toDoClass.js"
 
 import { createNew} from "./newItem.js";
