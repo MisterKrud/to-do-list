@@ -1,5 +1,6 @@
 * {
-    font-family:Arial, Helvetica, sans-serif
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
      /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
 }
 
@@ -24,7 +25,8 @@ body, header, nav{
 }
 
 p {
-    margin: 0;
+    margin: .5rem 0;
+  
 }
 
 #content {
@@ -35,4 +37,27 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
+    background-color: #f5f7f9;
+}
+
+.item-card{
+    margin: 5px ;
+    padding: 5px 10px 20px;
+    background-color: white;
+    border-radius: 5px;
+   
+}
+
+.category {
+    color: #8a8a8a;
+    font-size: 12px;
+}
+
+.item-header {
+    margin: 2px 0 10px;
+}
+
+.notes{
+    font-size: 12px;
+    font-style: italic;
 }
