@@ -1,5 +1,6 @@
 * {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family:'Arial Narrow Bold', sans-serif;
+
     font-size: 0.95rem;
      /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
 }
@@ -7,11 +8,14 @@
 body {
     display: grid;
     grid-template-columns: 1fr 6fr;
+    background-color: #f1f1f1;
+    gap: .8rem;
 
 }
 
 header {
-    grid-area: 1 / 1 /-1 / 2
+    grid-area: 1 / 1 /-1 / 2;
+    border-radius: 1rem;;
 }
 
 nav {
@@ -20,14 +24,13 @@ nav {
 
 }
 
-body, header, nav{
-    border: 1px gray solid
+header{
+    padding: 2rem;
+    background-color: #fefefe;
+
 }
 
-p {
-    margin: .5rem 0;
-  
-}
+
 
 #content {
     grid-area: 1 / 2 / -1 / -1
@@ -35,29 +38,79 @@ p {
 
 #item-container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 5px;
-    background-color: #f5f7f9;
+    border-radius: 1rem;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    gap: 8px;
+    background-color: #fefefe;
+    padding:  2rem 1rem;
+    /* background-color: #f5f7f9; */
 }
 
 .item-card{
     margin: 5px ;
     padding: 5px 10px 20px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 1rem;;
    
 }
 
-.category {
-    color: #8a8a8a;
-    font-size: 12px;
+.item-list-view{
+    margin:0 5px ;
+    padding: 0 15px 1px;
+    background-color: #fefefe;
+    border-radius: 5px;
+    display: grid;
+   
+   
 }
 
+
+.item-content {
+    display: flex;
+}
+
+.category, .due-date {
+    color: #8a8a8a;
+    font-size: 12px;
+    margin: 0 0.4rem 0 1.6rem ;
+}
+
+.check-complete{
+    margin-top: -10px;
+    position: relative;
+    top: 1.5em;
+    left: 1px;
+    width: 15px;
+    height: 15px;
+   border: 1rem;
+    border-radius: 7.5px;
+    grid-area: 1 / 1 / -1/ 2;
+}
+
+.category{
+    margin-bottom: 3px;
+}
+
+.due-date{
+    margin-left: 0;
+}
 .item-header {
-    margin: 2px 0 10px;
+    margin: 0 1.5rem 0.1rem;
+    font-weight:600;
+    color: #303030;
 }
 
 .notes{
     font-size: 12px;
     font-style: italic;
 }
+.item-list-view:hover{
+    background-color:#ececec;
+}
+
+.item-list-view:active, .selected, .selected:hover {
+    background-color: white;
+    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
+}
+

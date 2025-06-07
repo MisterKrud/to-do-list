@@ -5,7 +5,7 @@ import { createNew} from "./newItem.js";
 import { deleteToDoItem, saveItem as save, items, getItemsFromStorage} from "./manageItems.js"
 import { setNewCategory, changeCategory, categories, filter, populateCategories } from "./manageCategories.js"
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
-import { page } from "./dom.js"
+import { tasksMain } from "./tasksMain.js"
 
 
 // import { checkStorage } from "./saveItems.js";
@@ -78,7 +78,7 @@ console.table(filter('Home'))
 console.table(localStorage)
 console.table(items)
 
-content.appendChild(page())
+content.appendChild(tasksMain())
 
 window.createNew = createNew;
 window.ToDo = ToDo;
