@@ -44,3 +44,5 @@ export const getItemsFromStorage = () => {
     items.push(JSON.parse(localStorage.getItem(key)));
   });
 };
+
+export const toggleComplete = (item) => item.complete === false ? item.complete = true : item.complete = false;

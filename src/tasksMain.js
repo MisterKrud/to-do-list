@@ -1,4 +1,5 @@
 import { items } from "./manageItems";
+import { toggleComplete } from "./manageItems";
 
 const tasksMain = () => {
 const content = document.getElementById("content");
@@ -6,12 +7,14 @@ const itemContainer = document.createElement("div");
 itemContainer.setAttribute("id", "item-container")
 content.appendChild(itemContainer);
 
-
+ 
 
 console.log(`items in dom.js: ${items}`)
     items.forEach(item => {
-        const completeClass = () =>item.complete ? "complete" : "incomplete";
+       const completeClass = () =>item.complete ? "complete" : "incomplete";
+   
   
+    
         console.log(`item.title: ${item.title}`)
         const itemListView = document.createElement("div");
         itemListView.setAttribute("class", "item-list-view");
@@ -39,28 +42,82 @@ console.log(`items in dom.js: ${items}`)
         category.textContent = item.category;
         itemContainer.appendChild(itemListView);
 
-         const checkComplete = document.createElement("button");
-         const checkDiv = document.createElement("div");
-         checkDiv.setAttribute("class","checkbox-container")
-    checkComplete.setAttribute("role", "checkbox");
-    checkComplete.setAttribute("class", "check-complete")
-    checkComplete.setAttribute("aria-checked", "false")
-      
+        const checkBox = document.createElement("input");
+        
+      checkBox.setAttribute("type", "checkbox")
+      checkBox.setAttribute("class", "check-box")
+checkBox.classList.add(completeClass())
+       
+        
+
         // itemCard.appendChild(title)
-        itemListView.append(checkComplete, title, itemContent );
+        itemListView.append(checkBox, title, itemContent );
        itemContent.append(category, dueDate)
     }
     )
 
+    const checkBoxes = document.querySelectorAll(".check-box");
+    // console.table(checkBoxes)
+
+        checkBoxes.forEach(box => {
+           
+            box.addEventListener("click", () =>{
+             
+              const boxParentId = box.parentElement.id
+              console.log(box.parentElement)
+              console.log(box.parentElement.id)
+             const idIndex = items.findIndex(item => item.id === boxParentId)
+               
+                if (box.getAttribute("class") === 'complete'){
+                    box.classList.add('incomplete')
+                    box.classList.remove('complete')
+                   
+                    
+                    
+                } else {
+                    box.classList.add('complete');
+                    box.classList.remove('incomplete');
+                    
+                    
+                }
+            
+                console.log(items[idIndex])
+                console.log(items[idIndex].complete)
+                toggleComplete(items[idIndex])
+                 console.log(items[idIndex].complete)
+                console.table(items)
+            } )
+        })
 
 
     const itemListView = document.querySelectorAll(".item-list-view");
     itemListView.forEach(item =>{
+        
         item.addEventListener("click", ()=>{
             itemListView.forEach(listItem => listItem.classList.remove("selected"))
             item.classList.add("selected")
+          
         })
     })
+
+  
+    // const checkBoxes = document.querySelectorAll(".check-box");
+
+ 
+    //     checkBoxes.forEach(box => {
+    //         box.addEventListener("click", () =>{
+    //             console.log(box.getAttribute("class"))
+    //             if (box.getAttribute("class") === 'complete'){
+    //                 box.classList.add('incomplete')
+    //                 box.classList.remove('complete')
+                    
+    //             } else {
+    //                 box.classList.add('complete');
+    //                 box.classList.remove('incomplete');
+    //             }
+    //         } )
+    //     })
+   
 
 return itemContainer;
 }
