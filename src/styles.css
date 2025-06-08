@@ -29,6 +29,15 @@ header {
      padding-left: 1rem;
 }
 
+#view-all{
+    margin: 0 ;
+   /* padding: 0.6rem; */
+   font-style:italic;
+   font-size: 15px;
+   /* background-color: #ebebeb; */
+}
+
+
 nav {
     display: grid;
     gap: 5px;
@@ -37,9 +46,9 @@ nav {
 
 ul, li{
     font-weight: normal;
-    list-style-type: none;
+    list-style-type:none;
     text-align: left;
-    padding:.2rem .5rem 1rem;
+    padding:0 .5rem 1rem;
     
 }
 
@@ -84,7 +93,7 @@ ul, li{
 .category, .due-date {
     color: #8a8a8a;
     font-size: 12px;
-    margin: 0 0.4rem 0 1.6rem ;
+    margin: 0 0.4rem 0 1.8rem ;
 }
 
 .complete, .incomplete{
@@ -120,7 +129,7 @@ input[type="checkbox"]:is(.complete) {
     margin-left: 0;
 }
 .item-header {
-    margin: 0 1.5rem 0.1rem;
+    margin: 0 1.8rem 0.1rem;
     font-weight:600;
     color: #303030;
 }
@@ -147,8 +156,16 @@ input[type="checkbox"]:is(.complete) {
     color: #b1b1b1;
     text-decoration: line-through;
     font-weight: normal;
-  
 
+}
 
+.project-name:hover{
+    text-decoration: underline;
+    font-style: italic;
+}
 
+.active{
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
 }

@@ -19,6 +19,7 @@ export const populateCategories = () => {
     let n = categories.indexOf('Default')
     categories.splice(n, 1);
     categories.unshift('Default');
+    categories.unshift('All')
 
 };
 
