@@ -6,6 +6,7 @@ import { deleteToDoItem, saveItem as save, items, getItemsFromStorage, saveItem}
 import { setNewCategory, changeCategory, categories, filter, populateCategories } from "./manageCategories.js"
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
 import { tasksMain } from "./tasksMain.js"
+import { tasksHeader } from "./tasksHeader.js";
 
 // localStorage.clear();
 // import { checkStorage } from "./saveItems.js";
@@ -18,7 +19,8 @@ import { tasksMain } from "./tasksMain.js"
 // import { main } from "./main.js"  
 // import { menu } from "./menu.js"
 // import { about } from "./about.js"
-// const content = document.getElementById("content");
+const content = document.getElementById("content");
+const header = document.querySelector("header");
 // const navButtons = document.querySelectorAll("button");
 // const buttonOne = navButtons[0];
 // const buttonTwo = navButtons[1];
@@ -81,7 +83,7 @@ console.table(filter('Home'))
 
 console.table(localStorage)
 console.table(items)
-
+header.appendChild(tasksHeader())
 content.appendChild(tasksMain())
 
 window.createNew = createNew;

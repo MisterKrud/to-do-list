@@ -5,6 +5,10 @@
      /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
 }
 
+h1, h2, h3, h4, h5{
+    margin: 0;
+}
+
 body {
     display: grid;
     grid-template-columns: 1fr 6fr;
@@ -15,7 +19,14 @@ body {
 
 header {
     grid-area: 1 / 1 /-1 / 2;
-    border-radius: 1rem;;
+    border-radius: 1rem;
+    /* text-align: center; */
+    background-color: #fefefe;
+    padding-top: 1rem;
+}
+
+#projects-header{
+     padding-left: 1rem;
 }
 
 nav {
@@ -24,12 +35,13 @@ nav {
 
 }
 
-header{
-    padding: 2rem;
-    background-color: #fefefe;
-
+ul, li{
+    font-weight: normal;
+    list-style-type: none;
+    text-align: left;
+    padding:.2rem .5rem 1rem;
+    
 }
-
 
 
 #content {
