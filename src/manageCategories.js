@@ -6,6 +6,7 @@ import {items} from "./manageItems.js"
 
 
 const categories = ['Default']
+let filteredCat = []
 
 export const populateCategories = () => {
     items.forEach(item => {
@@ -30,15 +31,16 @@ export const  changeCategory = (n, newCategory) => items[n].category = newCatego
 
 
 export const filter = (cat) => {
-  const filteredCat = [];
+  filteredCat = []
 //   console.table(filteredCat);
   items.forEach((item) => {
     if (item.category === cat) {
+      
       filteredCat.push(item);
       console.log(item);
     }
   });
-//   console.table(filteredCat);
+return filteredCat
 };
 
 
@@ -55,7 +57,7 @@ export const filter = (cat) => {
 // );
 
 
-export {categories}
+export {categories, filteredCat}
 // console.log(Todos.items)
 
 /*

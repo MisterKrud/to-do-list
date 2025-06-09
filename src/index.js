@@ -73,12 +73,12 @@ populateCategories();
 
 
 // console.log(categories)
-console.log('default:')
-console.table(filter('Default'))
-console.log('yard:')
-console.table(filter('Yard'))
-console.log('home:')
-console.table(filter('Home'))
+// console.log('default:')
+// console.table(filter('Default'))
+// console.log('yard:')
+// console.table(filter('Yard'))
+// console.log('home:')
+// console.table(filter('Home'))
 
 
 console.table(localStorage)
@@ -90,6 +90,7 @@ window.createNew = createNew;
 window.ToDo = ToDo;
 window.items = items;
 window.save = save;
+window.categories = categories;
 window.deleteToDoItem = deleteToDoItem;
 window.changeCategory = changeCategory;
 window.setNewCategory = setNewCategory;

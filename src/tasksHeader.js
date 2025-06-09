@@ -1,5 +1,6 @@
 import { items } from "./manageItems";
 import { categories, filter } from "./manageCategories";
+import { tasksMain } from "./tasksMain";
 
 
 
@@ -18,27 +19,7 @@ const tasksHeader = () => {
     header.appendChild(projectsContainer)
     projectsContainer.appendChild(projectsList)
 
-    categories.forEach(category => {
-        const project = document.createElement("li")
-        project.className = "project-name";
-        project.id = category.toLowerCase();
-        project.textContent = category;
-        projectsList.appendChild(project);
-
-       project.addEventListener("click", () =>{
-           const projectNames = document.querySelectorAll(".project-name");
-           console.table(projectNames)
-           projectNames.forEach(projName => projName.classList.remove("active"));
-            project.classList.add("active");
-             const activeProject = document.querySelector(".active");
-             console.log('active project')
-      console.table(activeProject.getAttribute("id"));
-        })
-    })
-
-
-
-
+   
       
 
     
