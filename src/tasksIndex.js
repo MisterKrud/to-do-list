@@ -8,8 +8,13 @@ const tasksIndex = () => {
     const content = document.getElementById("content");
     const indexBar = document.createElement("div");
     indexBar.id = "index-bar"
-    const projectsContainer = document.createElement("div")//.id("projects");
-    const projectsList = document.createElement("ul")//.id("projects-list");
+    const projectsContainer = document.createElement("div");
+    const projectsHeader = document.createElement("h3");
+    projectsHeader.textContent = "Projects";
+    projectsHeader.id ="projects-header";
+    const projectsList = document.createElement("ul");
+    projectsList.id="projects-list";
+
     // const viewAllItems = document.createElement("li");
     // viewAllItems.id = "view-all"
     // viewAllItems.className = "project-name";
@@ -17,8 +22,9 @@ const tasksIndex = () => {
     // projectsList.appendChild(viewAllItems)
     const mainScreen = document.getElementById("item-container")
     content.appendChild(indexBar)
-    indexBar.appendChild(projectsContainer)
-    projectsContainer.appendChild(projectsList)
+   
+    indexBar.append(projectsHeader, projectsList);
+    console.log(`appendingprojects list under the h3 element`)
 
    
       
@@ -26,9 +32,9 @@ const tasksIndex = () => {
     
 
 
-console.table(categories)
+console.log('tasksIndex')
 
-return projectsList;
+return indexBar;
 
 }
 

@@ -7,3 +7,4 @@ export const changeDueDate = (n, newDate) => items[n].dueDate = lightFormat(newD
 export const dateIsPast = (n) => isPast(items[n].dueDate) 
 
 
+console.log('manageDueDates')

@@ -58,3 +58,5 @@ export class TodoItem {
     return TodoItem.deletedItems
   }
 }
+
+console.log('toDoClass')

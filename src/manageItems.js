@@ -46,3 +46,5 @@ export const getItemsFromStorage = () => {
 };
 
 export const toggleComplete = (item) => item.complete === false ? item.complete = true : item.complete = false;
+
+console.log('manageItems')

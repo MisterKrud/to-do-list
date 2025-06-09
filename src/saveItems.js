@@ -19,7 +19,7 @@ const storageAvailable = (type) => {
    }
 }
 
-export const saveItem = (item) => {
+const saveItem = (item) => {
     if (storageAvailable("localStorage")){
         console.log(`Local storage length: ${localStorage.length}`)
         console.log('Storage is available');
@@ -46,7 +46,7 @@ const deleteToDoItem = (item) => {
 
 } 
 
-export const getItemsFromStorage = () => {
+const getItemsFromStorage = () => {
     for(let i = 0; i<localStorage.length; i++)
 
        items.push(JSON.parse(localStorage.getItem(i)))
@@ -55,3 +55,4 @@ export const getItemsFromStorage = () => {
      
     
 }
+console.log('saveItems')

@@ -56,7 +56,7 @@ const createNew = (
 // createNew('Vacuum','Kitchen and Laundry',undefined,'','','incomplete','Home')
 
 // console.log(`Create new task: ${createNew('Load dishwasher', '', undefined , undefined , true, 'Home')}`);
-
+console.log('newItems')
 export { createNew}
 
 

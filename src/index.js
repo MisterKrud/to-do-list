@@ -7,6 +7,8 @@ import { setNewCategory, changeCategory, categories, filter, populateCategories 
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
 import { tasksMain } from "./tasksMain.js"
 import { tasksIndex } from "./tasksIndex.js";
+import { itemCardView } from "./itemCard.js";
+
 
 // localStorage.clear();
 // import { checkStorage } from "./saveItems.js";
@@ -20,7 +22,7 @@ import { tasksIndex } from "./tasksIndex.js";
 // import { menu } from "./menu.js"
 // import { about } from "./about.js"
 const content = document.getElementById("content");
-const header = document.querySelector("header");
+const indexBar = document.getElementById("index-bar");
 // const navButtons = document.querySelectorAll("button");
 // const buttonOne = navButtons[0];
 // const buttonTwo = navButtons[1];
@@ -81,10 +83,11 @@ populateCategories();
 // console.table(filter('Home'))
 
 
-console.table(localStorage)
-console.table(items)
-header.appendChild(tasksHeader())
+// console.table(localStorage)
+// console.table(items)
+content.appendChild(tasksIndex())
 content.appendChild(tasksMain())
+
 
 window.createNew = createNew;
 window.ToDo = ToDo;
@@ -98,3 +101,4 @@ window.setNewCategory = setNewCategory;
 window.filter = filter
 
 
+console.log('index')

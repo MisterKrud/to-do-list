@@ -1,7 +1,9 @@
 import { items } from "./manageItems";
 import { toggleComplete } from "./manageItems";
 import { categories, filter, filteredCat} from "./manageCategories";
-import { projectsList} from "./tasksHeader"
+import { projectsList} from "./tasksIndex";
+import { itemCardView } from "./itemCard";
+
 
 const tasksMain = () => {
   const content = document.getElementById("content");
@@ -9,7 +11,12 @@ const tasksMain = () => {
   itemContainer.setAttribute("id", "item-container");
   content.appendChild(itemContainer);
 
-  console.log(`items in dom.js: ${items}`);
+const itemCard = document.createElement("dialog")
+itemCard.id="item-card";
+content.appendChild(itemCard)
+  
+
+//   console.log(`items in dom.js: ${items}`);
 
 
 //Put itmes from array in DOM
@@ -17,7 +24,7 @@ const tasksMain = () => {
   arr.forEach((item) => {
     const completeClass = () => (item.complete ? "complete" : "incomplete");
 
-    console.log(`item.title: ${item.title}`);
+    // console.log(`item.title: ${item.title}`);
     const itemListView = document.createElement("div");
         itemListView.className="item-list-view";
         itemListView.id =item.id;
@@ -56,6 +63,8 @@ const tasksMain = () => {
             itemContent.append(category, dueDate);
   })
   highlightSelectedItem();
+//   focussedToDoItem();
+//   console.log(focussedToDoItem())
 };
 
 
@@ -113,7 +122,7 @@ const projectsList = document.querySelector("ul");
 
 
      //highlight selected item
-     const highlightSelectedItem = () => {
+   const highlightSelectedItem = () => {
     const itemListView = document.querySelectorAll(".item-list-view"); 
     console.table(`itemListView: ${itemListView.length}`)//this is a repeat - need to find a way to fix this
   itemListView.forEach((item) => {
@@ -124,6 +133,10 @@ const projectsList = document.querySelector("ul");
       if (item.firstChild.className === "check-box complete"){
         return} else {
         item.classList.add("selected");
+        setTimeout(() => {
+        content.appendChild(itemCardView());
+            itemCard.showModal()
+        }, 1000)
       }
     });
   })
@@ -136,18 +149,18 @@ const displayCurrentProject = () => {
 
  const activeProject = document.querySelector(".active");
  const activeProjectId = activeProject.getAttribute("id") 
- console.log(`Just logging the string: ${activeProjectId}`)
+//  console.log(`Just logging the string: ${activeProjectId}`)
 filter(activeProjectId)
  itemContainer.innerHTML = ''
- console.log(filteredCat)
+//  console.log(filteredCat)
  populateDomItems(filteredCat)
 
 
 }
   populateDomItems(items)
-  return itemContainer;
+  return  itemContainer;
 };
 
 // page()
-
+console.log('tasksMain')
 export { tasksMain };
