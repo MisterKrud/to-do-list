@@ -32,8 +32,12 @@ export const  changeCategory = (n, newCategory) => items[n].category = newCatego
 
 export const filter = (cat) => {
   filteredCat = []
-//   console.table(filteredCat);
+// if(cat === "All"){
+
+// }
   items.forEach((item) => {
+
+    
     if (item.category === cat) {
       
       filteredCat.push(item);

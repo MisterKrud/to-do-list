@@ -6,7 +6,7 @@ import { deleteToDoItem, saveItem as save, items, getItemsFromStorage, saveItem}
 import { setNewCategory, changeCategory, categories, filter, populateCategories } from "./manageCategories.js"
 import { changeDueDate, dateIsPast } from "./manageDueDates.js";
 import { tasksMain } from "./tasksMain.js"
-import { tasksHeader } from "./tasksHeader.js";
+import { tasksIndex } from "./tasksIndex.js";
 
 // localStorage.clear();
 // import { checkStorage } from "./saveItems.js";

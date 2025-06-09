@@ -4,9 +4,10 @@ import { tasksMain } from "./tasksMain";
 
 
 
-const tasksHeader = () => {
-    const content = document.getElementById("content")
-    const header = document.querySelector("header")
+const tasksIndex = () => {
+    const content = document.getElementById("content");
+    const indexBar = document.createElement("div");
+    indexBar.id = "index-bar"
     const projectsContainer = document.createElement("div")//.id("projects");
     const projectsList = document.createElement("ul")//.id("projects-list");
     // const viewAllItems = document.createElement("li");
@@ -15,8 +16,8 @@ const tasksHeader = () => {
     // viewAllItems.textContent = "View all"
     // projectsList.appendChild(viewAllItems)
     const mainScreen = document.getElementById("item-container")
- 
-    header.appendChild(projectsContainer)
+    content.appendChild(indexBar)
+    indexBar.appendChild(projectsContainer)
     projectsContainer.appendChild(projectsList)
 
    
@@ -31,5 +32,5 @@ return projectsList;
 
 }
 
-export { tasksHeader }
+export { tasksIndex }
 
