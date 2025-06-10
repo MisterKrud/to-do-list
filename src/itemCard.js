@@ -20,7 +20,7 @@ const currentItemIndex = items.findIndex(item => item.id === activeItemId);
 const currentItem = items[currentItemIndex]
 console.log(`current item: ${currentItem}`)
 const title = document.createElement("h3");
-        title.className ="item-header";
+        title.className ="item-card-header";
         title.textContent = currentItem.title;
         console.log()
 currentItem.title
@@ -32,8 +32,8 @@ const description = document.createElement("p");
         description.textContent = currentItem.description;
 
 const dueDate = document.createElement("p");
-        dueDate.className = "due-date";
-        dueDate.textContent = currentItem.dueDate;
+        dueDate.className = "item-card-date";
+        dueDate.textContent = `Due: ${currentItem.dueDate}`;
     const priority = document.createElement("p");
         priority.textContent = currentItem.priority;
     const notes = document.createElement("p");
@@ -43,7 +43,7 @@ const dueDate = document.createElement("p");
     //     complete.className = completeClass();
     //     complete.innerText = completeClass();
     const category = document.createElement("p");
-        category.className = "category";
+        category.className = "item-card-category";
         category.textContent = currentItem.category;
 
     const updateButton = document.createElement("button");
@@ -65,7 +65,7 @@ const dueDate = document.createElement("p");
     // const completeClass = () => (currentItem.complete ? "complete" : "incomplete");
 
   
-    itemCard.append(title, category, description, dueDate, priority, notes, complete, buttonDiv);
+    itemCard.append(title, category, dueDate, description,  priority, notes, complete, buttonDiv);
     buttonDiv.append(updateButton, cancelButton);
     
     const closeDialog = () => {
