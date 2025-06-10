@@ -133,10 +133,12 @@ const projectsList = document.querySelector("ul");
       if (item.firstChild.className === "check-box complete"){
         return} else {
         item.classList.add("selected");
-        setTimeout(() => {
+     itemCard.innerHTML = '';
         content.appendChild(itemCardView());
-            itemCard.showModal()
-        }, 1000)
+        content.classList.add("three-columns");
+       
+            itemCard.show()
+ 
       }
     });
   })

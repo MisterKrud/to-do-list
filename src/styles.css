@@ -2,7 +2,10 @@
     font-family:'Arial Narrow Bold', sans-serif;
 
     font-size: 0.95rem;
+    box-sizing: border-box;
      /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
+    
+     
      
 }
 
@@ -13,7 +16,8 @@ h1, h2, h3, h4, h5{
 body {
    
     background-color: #f1f1f1;
-    gap: .8rem;
+   
+    
 
 }
 
@@ -65,7 +69,16 @@ ul, li{
     grid-template-columns: 1fr 6fr;
     grid-template-rows: 2fr 1fr;
     gap: 0.8rem;
+    max-width: 1200px;
+    margin: auto;
+   
 }
+
+#content:is(.three-columns){
+ grid-template-columns: 1fr 4fr 3fr;
+}
+
+
 
 #item-container{
     display: grid;
@@ -78,23 +91,8 @@ ul, li{
     /* background-color: #f5f7f9; */
 }
 
-/* #item-card{
-    grid-area: (1 / 3 / -1 / -1);
-    margin: 5px ;
-    padding: 5px 10px 20px;
-    background-color: white;
-    border-radius: 1rem;;
-   
-} */
 
-dialog{
-    position: static;
-    margin: 5rem auto;
-    border: none;
-    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
-    0 1px 4px 0 rgba(0, 0, 0, .04);
 
-}
 
 .item-list-view{
     margin:0 5px ;
@@ -196,4 +194,39 @@ input[type="checkbox"]:is(.complete) {
     margin-top: 5px;
     padding-bottom: 2rempx;
     height: inherit;
+}
+
+
+/* #item-card{
+    grid-area: (1 / 3 / -1 / -1);
+    margin: 5px ;
+    padding: 5px 10px 20px;
+    background-color: white;
+    border-radius: 1rem;;
+   
+} */
+
+dialog{
+    position: static;
+    margin-top: 5px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
+    height: 100%;
+  width: 100%;
+}
+
+dialog h3{
+    font-size: 16px;
+    padding:0 0 13px !important;
+    margin: 0 !important;
+    text-align: left;
+}
+
+#button-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
 }

@@ -16,13 +16,10 @@ else {
 console.log(activeItemId)
 
 const currentItemIndex = items.findIndex(item => item.id === activeItemId);
-console.log(currentItemIndex)
-console.log(items[3])
-console.log(items[activeItemId])
-console.log(typeof(currentItemIndex))
+
 const currentItem = items[currentItemIndex]
 console.log(`current item: ${currentItem}`)
-const title = document.createElement("p");
+const title = document.createElement("h3");
         title.className ="item-header";
         title.textContent = currentItem.title;
         console.log()
@@ -49,16 +46,34 @@ const dueDate = document.createElement("p");
         category.className = "category";
         category.textContent = currentItem.category;
 
+    const updateButton = document.createElement("button");
+    updateButton.id = "update-button";
+    updateButton.textContent = "Update";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.id = "cancel-button";
+    cancelButton.textContent = "Close";
+
+    const buttonDiv = document.createElement("div");
+    buttonDiv.id = "button-container";
+
+
+
 
 
 
     // const completeClass = () => (currentItem.complete ? "complete" : "incomplete");
 
   
-    itemCard.append(title, category, description, dueDate, priority, notes, complete)
+    itemCard.append(title, category, description, dueDate, priority, notes, complete, buttonDiv);
+    buttonDiv.append(updateButton, cancelButton);
     
     
-    
+    cancelButton.addEventListener("click", () => {
+        content.classList.remove("three-columns");
+        itemCard.close();
+});
+
     
 }
  
