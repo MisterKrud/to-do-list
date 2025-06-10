@@ -86,7 +86,7 @@ populateCategories();
 // console.table(localStorage)
 // console.table(items)
 content.appendChild(tasksIndex())
-content.appendChild(tasksMain())
+content.append(tasksMain())
 
 
 window.createNew = createNew;

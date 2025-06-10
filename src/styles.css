@@ -4,7 +4,8 @@
     font-size: 0.95rem;
     box-sizing: border-box;
      /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
-    
+    --shadow:  #0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
      
      
 }
@@ -87,6 +88,8 @@ ul, li{
     gap: 8px;
     background-color: #fefefe;
     padding:  2rem 1rem;
+   box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
     /* height: 40vh; */
     /* background-color: #f5f7f9; */
 }
@@ -164,6 +167,7 @@ input[type="checkbox"]:is(.complete) {
 
 .item-list-view:active, .selected, .selected:hover {
     background-color: white;
+   
     box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
     0 1px 4px 0 rgba(0, 0, 0, .04);
 }
@@ -194,6 +198,8 @@ input[type="checkbox"]:is(.complete) {
     margin-top: 5px;
     padding-bottom: 2rempx;
     height: inherit;
+    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
 }
 
 
@@ -206,7 +212,7 @@ input[type="checkbox"]:is(.complete) {
    
 } */
 
-dialog{
+.visible{
     position: static;
     margin-top: 5px;
     margin-right: 5px;
@@ -214,8 +220,11 @@ dialog{
     border-radius: 10px;
     box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
     0 1px 4px 0 rgba(0, 0, 0, .04);
+    display: grid;
+    flex-direction: column;
     height: 100%;
-  width: 100%;
+    width: 100%;
+   
 }
 
 dialog h3{
@@ -229,4 +238,5 @@ dialog h3{
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+    /* align-self: flex-end; */
 }

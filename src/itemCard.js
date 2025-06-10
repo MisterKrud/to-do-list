@@ -1,4 +1,4 @@
-import { items } from "./manageItems"
+import { items, saveItem } from "./manageItems"
 import { highlightSelectedItem } from "./tasksMain"
 
 const itemCardView = () => {
@@ -68,11 +68,20 @@ const dueDate = document.createElement("p");
     itemCard.append(title, category, description, dueDate, priority, notes, complete, buttonDiv);
     buttonDiv.append(updateButton, cancelButton);
     
+    const closeDialog = () => {
+         content.classList.remove("three-columns");
+        itemCard.close();
+       itemCard.classList.remove("visible")
+    }
     
     cancelButton.addEventListener("click", () => {
-        content.classList.remove("three-columns");
-        itemCard.close();
+       closeDialog()
 });
+
+updateButton.addEventListener("click",()=> {
+    saveItem(currentItem)
+    closeDialog()
+} )
 
     
 }

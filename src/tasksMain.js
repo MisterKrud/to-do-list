@@ -138,7 +138,8 @@ const projectsList = document.querySelector("ul");
         content.classList.add("three-columns");
        
             itemCard.show()
- 
+            itemCard.classList.add("visible")
+            
       }
     });
   })
