@@ -22,10 +22,10 @@ const createNew = (
   complete = false,
   category = "Default"
 ) => {
-  if (categories.includes(category) == false) {
-   
-    categories.push(category)
+  if (dueDate = null) {
+    dueDate = new Date(), today();
   }
+  
   let newItem = items.push(
     new ToDo(
       title,

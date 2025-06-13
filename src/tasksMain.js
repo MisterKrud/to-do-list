@@ -3,6 +3,8 @@ import { toggleComplete } from "./manageItems";
 import { categories, filter, filteredCat} from "./manageCategories";
 import { projectsList} from "./tasksIndex";
 import { itemCardView } from "./itemCard";
+import { createNew as saveNew } from "./newItem";
+
 
 
 const tasksMain = () => {
@@ -11,6 +13,21 @@ const tasksMain = () => {
   itemContainer.setAttribute("id", "item-container");
   content.appendChild(itemContainer);
 
+
+
+
+  const addNew = document.createElement("div");
+  addNew.id="add-new";
+    const newItemName = document.createElement("input");
+        newItemName.setAttribute("type","text");
+        newItemName.id= "new-item-name";
+        newItemName.placeholder="Add task"
+    const addNewButton = document.createElement("button");
+        addNewButton.id = "add-new-button";
+        addNewButton.textContent = "+";
+      const newTask = newItemName.value;
+       
+ 
 const itemCard = document.createElement("dialog")
 itemCard.id="item-card";
 content.appendChild(itemCard)
@@ -49,6 +66,8 @@ content.appendChild(itemCard)
     const category = document.createElement("p");
         category.className = "category";
         category.textContent = item.category;
+
+
     
     
  
@@ -58,15 +77,27 @@ content.appendChild(itemCard)
     checkBox.setAttribute("class", "check-box");
     checkBox.classList.add(completeClass());
 
-    itemContainer.appendChild(itemListView);
+    itemContainer.prepend(itemListView);
         itemListView.append(checkBox, title, itemContent);
             itemContent.append(category, dueDate);
+newItemName.value = '';
+ newItemName.placeholder='Add task'
+             addNew.append(addNewButton, newItemName);
+ itemContainer.appendChild(addNew);
+            return itemListView;
   })
   highlightSelectedItem();
 //   focussedToDoItem();
 //   console.log(focussedToDoItem())
+
+    
 };
 
+     
+    
+
+
+ 
 
  
 
@@ -160,6 +191,19 @@ filter(activeProjectId)
 
 
 }
+
+console.log('new button ' + typeof(addNewButton))
+addNewButton.addEventListener("click",() => {
+  saveNew(newItemName.value);
+  itemContainer.innerHTML='';
+  populateDomItems(items);
+ 
+
+  
+}
+
+)
+
   populateDomItems(items)
   return  itemContainer;
 };
