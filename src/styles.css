@@ -211,15 +211,19 @@ input[type="checkbox"]:is(.complete) {
     border-radius: 1rem;;
    
 } */
-
+dialog{
+border: none;
+ border-radius: 10px;
+ box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
+    0 1px 4px 0 rgba(0, 0, 0, .04);
+}
 .visible{
     position: static;
     margin-top: 5px;
     margin-right: 5px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
-    0 1px 4px 0 rgba(0, 0, 0, .04);
+    
+   
+    
     display: grid;
     /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 3fr 1fr 6fr ; */
     height: 100%;
@@ -285,7 +289,7 @@ input[type="checkbox"]:is(.complete) {
     margin: 0 ;
     outline: none;
     border-radius: 8px;
-    width: 85%;
+    width: 65%;
     border: #e4e4e4 solid .3px;
     /* background: linear-gradient(#ffffff, #f1f1f1, #ffffff,#f1f1f1); */
 
@@ -313,4 +317,19 @@ button:hover{
 
 button:active{
     translate: 2px 2px; 
+}
+#calendar-container{
+    position: relative;
+   margin: 200px  auto;
+}
+
+#calendar-container>input{
+   margin: 5px 5px 20px;
+   
+}
+.date-button{
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px;
+    width: 40%;
 }

@@ -34,6 +34,40 @@ const description = document.createElement("p");
 const dueDate = document.createElement("p");
         dueDate.className = "item-card-date";
         dueDate.textContent = `Due: ${currentItem.dueDate}`;
+
+         const calendarContainer = document.createElement("dialog")
+            calendarContainer.id = "calendar-container"
+            const datePicker = document.createElement("input");
+            datePicker.setAttribute("type", "date");
+            datePicker.id="date-picker";
+            dueDate.appendChild(calendarContainer);
+            calendarContainer.appendChild(datePicker);
+            const dateButtonDiv = document.createElement("div");
+            dateButtonDiv.id="date-button-div"
+            const dateUpdateButton = document.createElement("button");
+            calendarContainer.appendChild(dateButtonDiv);
+            dateUpdateButton.textContent = 'Save'
+            dateUpdateButton.className = 'date-button'
+            const dateCancelButton = document.createElement("button");
+            dateCancelButton.textContent = 'Cancel';
+            
+            dateCancelButton.className = 'date-button'
+            dateButtonDiv.append(dateUpdateButton, dateCancelButton)
+
+
+        dueDate.addEventListener("click", () =>{
+            calendarContainer.showModal();
+        })
+
+        dateUpdateButton.addEventListener("click", () =>{
+            // currentItem.dueDate = datePicker.value;
+             
+            calendarContainer.close();
+        }
+        
+        
+
+    )
     const priority = document.createElement("p");
         priority.textContent = currentItem.priority;
     const notes = document.createElement("p");
