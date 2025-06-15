@@ -204,7 +204,10 @@ addNewButton.addEventListener("click",() => {
 
 )
 
-  populateDomItems(items)
+const card = document.getElementById("item-card")
+card.addEventListener("change", populateDomItems(items))
+
+  // populateDomItems(items)
   return  itemContainer;
 };
 

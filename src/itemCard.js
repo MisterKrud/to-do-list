@@ -20,17 +20,34 @@ const currentItemIndex = items.findIndex(item => item.id === activeItemId);
 
 const currentItem = items[currentItemIndex]
 console.log(`current item: ${currentItem}`)
-const title = document.createElement("h3");
-        title.className ="item-card-header";
+const title = document.createElement("textarea");
+        title.id ="item-card-header";
+        title.name = "item-card-header"
+        title.rows = 1;
         title.textContent = currentItem.title;
-        console.log()
-currentItem.title
+
+title.addEventListener("change", () => {
+    currentItem.title = title.value
+    saveItem(currentItem);
+})
+
+
+
 
 const itemContent = document.createElement("div");
         itemContent.className = "item-content";
         
-const description = document.createElement("p");
+const description = document.createElement("textarea");
+description.id= currentItem.description;
+description.setAttribute("name","description");
+description.placeholder = "Description";
         description.textContent = currentItem.description;
+
+    description.addEventListener("change", () => currentItem.description = description.value)
+    saveItem(currentItem);    
+
+
+
 
 const dueDate = document.createElement("p");
         dueDate.className = "item-card-date";
@@ -118,9 +135,29 @@ const dueDate = document.createElement("p");
 // })
 
 
-    const notes = document.createElement("p");
-        notes.className = "notes";
-        notes.textContent = currentItem.notes;
+    const notes = document.createElement("textarea");
+    
+        notes.id = "notes";
+        notes.setAttribute("name","notes")
+        notes.setAttribute("cols", "100")
+        notes.setAttribute("rows","1");
+     
+         notes.placeholder = 'Add notes'
+         notes.textContent = currentItem.notes;
+      
+        notes.addEventListener("change", ()=> {
+            currentItem.notes = notes.value
+        console.log(`new note: ${notes.value}`)
+        console.log(`new note: ${currentItem.notes}`)
+        saveItem(currentItem)
+        notes.textContent = currentItem.notes
+        })
+       
+        
+
+
+
+
     const complete = document.createElement("p");
   
 
