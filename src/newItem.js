@@ -17,7 +17,7 @@ const createNew = (
   title,
   description,
   dueDate = lightFormat(new Date(), "d/M/yy"),
-  priority = 'medium',
+  priority = 'Medium',
   notes = "",
   complete = false,
   category = "Default"

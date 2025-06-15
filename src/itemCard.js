@@ -1,5 +1,6 @@
 import { items, saveItem } from "./manageItems"
 import { highlightSelectedItem } from "./tasksMain"
+import {priority } from "./toDoClass"
 
 const itemCardView = () => {
 const content = document.getElementById("content");
@@ -68,14 +69,61 @@ const dueDate = document.createElement("p");
         
 
     )
-    const priority = document.createElement("p");
-        priority.textContent = currentItem.priority;
+    const priorityDiv = document.createElement("div");
+    priorityDiv.id = "priority"
+     
+
+    //   const prioritySelector = (() =>{
+    const priorityList = document.createElement("select")
+    priorityList.id = "priority";
+    priorityList.setAttribute("name", "priorities")
+    priorityDiv.appendChild(priorityList)
+
+    priority.forEach(item => {
+      const priorityOption =  document.createElement("option");
+      priorityOption.className = "priority-option";
+      priorityOption.textContent = item;
+      priorityOption.setAttribute("value", item.toLowerCase())
+        priorityList.appendChild(priorityOption)
+        
+        if(item.toLowerCase() === currentItem.priority){
+            priorityOption.selected = true;
+         
+        } else {
+            console.log(`${item} doesn't match ${currentItem.priority}`)
+            if(item.toLowerCase === 'medium'){
+                priorityOption.selected = true
+                 console.log(itemCard.querySelector("active"))
+            }
+        }
+        console.log(priorityOption)
+      
+    })
+
+      priorityList.addEventListener("change", () => {
+            console.log('change')
+            const newPriority = priorityList.value;
+
+            currentItem.priority = newPriority;
+           saveItem(currentItem)
+            }
+       
+
+
+        )
+
+
+
+
+// })
+
+
     const notes = document.createElement("p");
         notes.className = "notes";
         notes.textContent = currentItem.notes;
     const complete = document.createElement("p");
-    //     complete.className = completeClass();
-    //     complete.innerText = completeClass();
+  
+
     const category = document.createElement("p");
         category.className = "item-card-category";
         category.textContent = currentItem.category;
@@ -92,15 +140,12 @@ const dueDate = document.createElement("p");
     buttonDiv.id = "button-container";
 
 
-
-
-
-
-    // const completeClass = () => (currentItem.complete ? "complete" : "incomplete");
+  
+    itemCard.append(title, category, dueDate, description,  priorityDiv, notes, complete, buttonDiv);
+    buttonDiv.append(updateButton, cancelButton);
 
   
-    itemCard.append(title, category, dueDate, description,  priority, notes, complete, buttonDiv);
-    buttonDiv.append(updateButton, cancelButton);
+
     
     const closeDialog = () => {
          content.classList.remove("three-columns");
@@ -113,58 +158,18 @@ const dueDate = document.createElement("p");
 });
 
 updateButton.addEventListener("click",()=> {
+
     saveItem(currentItem)
     closeDialog()
 } )
 
     
 }
+
+
+
+
  
-    // const checkBox = document.createElement("input");
-
-    // checkBox.setAttribute("type", "checkbox");
-    // checkBox.setAttribute("class", "check-box");
-    // checkBox.classList.add(completeClass());
-
-    // itemContainer.appendChild(itemListView);
-    //     itemListView.append(checkBox, title, itemContent);
-    //         itemContent.append(category, dueDate);
-
-
-
-// itemCard.innerHTML = "dummy text"
-// content.appendChild(itemCard);
-
-
-
-
-
-
-// const itemId = () => {
-//     const selectedItem = document.querySelector(".selected");
-//     if(!selectedItem){
-//         return
-//     }
-//         else {
-//             return selectedItem.getAttribute("id");
-//         }
-//     }
-
-
-// export const focussedToDoItem = () => {
-//  if(itemId() === undefined) {
-//  console.log('no item selected')   
-//  } else {
-//  const id = itemId();
-//  id.addEventListener("click", () =>{
-//  const idIndex = items.findIndex((item) => item.id === id);
-// console.table(items[idIndex])
-
-
-//  })
-//  }
-
-// }
 return itemCard
 }
 

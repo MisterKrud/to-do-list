@@ -21,11 +21,9 @@ export class TodoItem {
     this.id = crypto.randomUUID();
   }
 
-//   static items = [];
-//   static deletedItems = [];
-  // static category = ["Default"];
 
-  static priority = ["Low", "Medium", "High", "Urgent"];
+
+ static priority = ["Low", "Medium", "High", "Urgent"];
 
   toggleComplete() {
     if(this.complete == false){
@@ -34,29 +32,13 @@ export class TodoItem {
     return this.complete;
   }
 
-
-
-
-//   checkCategory(value) {
-//     if (this.category.includes(value) == false) {
-//       this.category.push(value);
-//     }
-//   }
-
-  // setNewCategory(categoryName) {
-  //   this.category.push(categoryName);
-  // }
-
-  // changeItemCategory(newCategory){
-  //   this.category = newCategory
-
-  // }
-
  static deleteItem(n) {
     TodoItem.deletedItems = TodoItem.items.splice(n,1);
     console.table(TodoItem.items)
     return TodoItem.deletedItems
   }
 }
+
+export const priority = ["Low", "Medium", "High", "Urgent"];
 
 console.log('toDoClass')
