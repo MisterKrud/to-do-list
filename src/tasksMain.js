@@ -25,7 +25,15 @@ const tasksMain = () => {
     const addNewButton = document.createElement("button");
         addNewButton.id = "add-new-button";
         addNewButton.textContent = "+";
+    
+    const newProject = document.createElement("input");
+        newProject.setAttribute("type", "text");
+         newProject.id = "new-project";  
       const newTask = newItemName.value;
+
+      // const newProject = document.createElement("div");
+     
+
        
  
 const itemCard = document.createElement("dialog")
@@ -164,18 +172,30 @@ const projectsList = document.querySelector("ul");
       
       if (item.firstChild.className === "check-box complete"){
         return} else {
-        item.classList.add("selected");
+
+          createItemCard(item)
+    //     item.classList.add("selected");
+    //  itemCard.innerHTML = '';
+    //     content.appendChild(itemCardView());
+    //     content.classList.add("three-columns");
+       
+    //         itemCard.show()
+    //         itemCard.classList.add("visible")
+            
+      }
+    });
+  })
+};
+
+const createItemCard = (selectedItem) => {
+   selectedItem.classList.add("selected");
      itemCard.innerHTML = '';
         content.appendChild(itemCardView());
         content.classList.add("three-columns");
        
             itemCard.show()
             itemCard.classList.add("visible")
-            
-      }
-    });
-  })
-};
+}
 //  const activeProject = document.querySelector(".active");
 //   const activeProjectId = activeProject.getAttribute("id") 
 
@@ -199,6 +219,10 @@ addNewButton.addEventListener("click",() => {
   saveNew(newItemName.value);
   itemContainer.innerHTML='';
   populateDomItems(items);
+  const newItem = document.querySelector(".item-list-view")
+
+  
+  createItemCard(newItem)
  
 
   

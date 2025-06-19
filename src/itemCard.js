@@ -14,6 +14,11 @@ const itemCardView = () => {
   if (!activeItemId) {
     return;
   } else {
+
+
+
+
+    
     console.log(activeItemId);
 
     //Get selected task for card
@@ -64,6 +69,9 @@ const itemCardView = () => {
     const datePicker = document.createElement("input");
     datePicker.setAttribute("type", "date");
     datePicker.id = "date-picker";
+    if(content.contains(document.getElementById("calendar-container"))){
+        console.log('calendarContainer already in dom')
+    } else {
     content.appendChild(calendarContainer);
     calendarContainer.appendChild(datePicker);
     const dateButtonDiv = document.createElement("div");
@@ -99,6 +107,7 @@ const itemCardView = () => {
       
       
     })
+}
     const priorityDiv = document.createElement("div");
     priorityDiv.id = "priority";
 
