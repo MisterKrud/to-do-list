@@ -24,7 +24,7 @@ const tasksIndex = () => {
     content.appendChild(indexBar)
    
     indexBar.append(projectsHeader, projectsList);
-    console.log(`appendingprojects list under the h3 element`)
+    
 
    
       

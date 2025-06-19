@@ -1,5 +1,5 @@
 import { items } from "./manageItems";
-import { toggleComplete } from "./manageItems";
+import { toggleComplete, deleteToDoItem } from "./manageItems";
 import { categories, filter, filteredCat} from "./manageCategories";
 import { projectsList} from "./tasksIndex";
 import { itemCardView } from "./itemCard";
@@ -34,6 +34,21 @@ const tasksMain = () => {
       // const newProject = document.createElement("div");
      
 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
        
  
 const itemCard = document.createElement("dialog")
@@ -46,7 +61,9 @@ content.appendChild(itemCard)
 
 //Put itmes from array in DOM
   const populateDomItems = (arr) => {
+     itemContainer.innerHTML =''
   arr.forEach((item) => {
+   
     const completeClass = () => (item.complete ? "complete" : "incomplete");
 
     // console.log(`item.title: ${item.title}`);
@@ -94,7 +111,14 @@ newItemName.value = '';
              addNew.append(addNewButton, newItemName);
  itemContainer.appendChild(addNew);
             return itemListView;
-  })
+  
+  
+  
+  
+  
+          })
+
+         
   highlightSelectedItem();
 //   focussedToDoItem();
 //   console.log(focussedToDoItem())
@@ -103,36 +127,14 @@ newItemName.value = '';
 };
 
      
-    
-
-
  
 
  
 
-
-  //checkbox complete event listener
-  const checkBoxes = document.querySelectorAll(".check-box");
  
-  checkBoxes.forEach((box) => {
-    box.addEventListener("click", () => {
-      const boxParentId = box.parentElement.id;    
-      const idIndex = items.findIndex((item) => item.id === boxParentId);
-      if (box.getAttribute("class") === "complete") {
-        box.classList.add("incomplete");
-        box.classList.remove("complete");
-      } else {
-        box.classList.add("complete");
-        box.classList.remove("incomplete");
-        const completedItemToShift = document.getElementById(boxParentId);
-        completedItemToShift.classList.remove("selected");
-        itemContainer.removeChild(completedItemToShift);
-        itemContainer.appendChild(completedItemToShift);
-        completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
-      }     
-      toggleComplete(items[idIndex]);
-    });
-  });
+
+
+ 
 
 
 
@@ -164,7 +166,7 @@ const projectsList = document.querySelector("ul");
      //highlight selected item
    const highlightSelectedItem = () => {
     const itemListView = document.querySelectorAll(".item-list-view"); 
-    console.table(`itemListView: ${itemListView.length}`)//this is a repeat - need to find a way to fix this
+   
   itemListView.forEach((item) => {
     item.addEventListener("click", () => {
         console.log(`item clicked`)
@@ -214,7 +216,7 @@ filter(activeProjectId)
 
 }
 
-console.log('new button ' + typeof(addNewButton))
+
 addNewButton.addEventListener("click",() => {
   saveNew(newItemName.value);
   itemContainer.innerHTML='';
@@ -230,10 +232,59 @@ addNewButton.addEventListener("click",() => {
 
 )
 
+
 const card = document.getElementById("item-card")
 // card.addEventListener("change", populateDomItems(items))
 
-  populateDomItems(items)
+  
+
+  //checkbox complete event listener
+ populateDomItems(items)
+  
+
+
+   const checkBoxes = document.querySelectorAll(".check-box");
+
+ 
+  checkBoxes.forEach((box) => {
+    
+ 
+    box.addEventListener("click", () => {
+      console.log(`box clicked`)
+      const boxParentId = box.parentElement.id;    
+      const idIndex = items.findIndex((item) => item.id === boxParentId);
+      if (box.getAttribute("class") === "complete") {
+        box.classList.add("incomplete");
+        box.classList.remove("complete");
+      } else {
+        box.classList.add("complete");
+        box.classList.remove("incomplete");
+        const completedItemToShift = document.getElementById(boxParentId);
+        completedItemToShift.classList.remove("selected");
+        itemContainer.removeChild(completedItemToShift);
+        itemContainer.appendChild(completedItemToShift);
+        const itemDeleteButton = document.createElement("button")
+        itemDeleteButton.id = "item-delete-button"
+        itemDeleteButton.innerText = "x";
+        completedItemToShift.appendChild(itemDeleteButton);
+
+
+        
+        // completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
+      }     
+      toggleComplete(items[idIndex]);
+    const itemDeleteButton = document.getElementById("item-delete-button")
+     itemDeleteButton.addEventListener("click", () => {
+          
+          console.table(items)
+          deleteToDoItem(items[idIndex])
+          console.table(items)
+         populateDomItems(items)
+          
+        })
+    });
+  });
+
   return  itemContainer;
 };
 

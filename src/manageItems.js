@@ -28,6 +28,7 @@ export const saveItem = (item) => {
 };
 
 const saveToDoItem = (item) => {
+
   const itemId = item.id;
   if (!localStorage.getItem(item)) {
     localStorage.setItem(itemId, JSON.stringify(item));
@@ -35,7 +36,8 @@ const saveToDoItem = (item) => {
 };
 
 export const deleteToDoItem = (item) => {
-  items.splice(items.indexOf(item));
+  console.log(`deleting ${item}`)
+  items.splice(items.indexOf(item), 1);
   localStorage.removeItem(item.id);
 };
 

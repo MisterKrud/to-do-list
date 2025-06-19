@@ -127,13 +127,13 @@ const itemCardView = () => {
       if (item.toLowerCase() === currentItem.priority) {
         priorityOption.selected = true;
       } else {
-        console.log(`${item} doesn't match ${currentItem.priority}`);
+        
         if (item.toLowerCase === "medium") {
           priorityOption.selected = true;
-          console.log(itemCard.querySelector("active"));
+       
         }
       }
-      console.log(priorityOption);
+     
     });
 
     priorityList.addEventListener("change", () => {
