@@ -48,6 +48,7 @@ content.appendChild(itemCard)
     const title = document.createElement("p");
         title.className ="item-header";
         title.textContent = item.title;
+        
     const itemContent = document.createElement("div");
         itemContent.className = "item-content";
     const description = document.createElement("p");
@@ -188,6 +189,7 @@ filter(activeProjectId)
  itemContainer.innerHTML = ''
 //  console.log(filteredCat)
  populateDomItems(filteredCat)
+//  itemContainer.className = 
 
 
 }
@@ -205,9 +207,9 @@ addNewButton.addEventListener("click",() => {
 )
 
 const card = document.getElementById("item-card")
-card.addEventListener("change", populateDomItems(items))
+// card.addEventListener("change", populateDomItems(items))
 
-  // populateDomItems(items)
+  populateDomItems(items)
   return  itemContainer;
 };
 
