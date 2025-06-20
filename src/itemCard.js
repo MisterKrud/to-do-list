@@ -1,8 +1,10 @@
 import { items, saveItem } from "./manageItems";
-// import { tasksMain } from "./tasksMain"
+// import {tasksMain } from "./tasksMain"
 import { priority } from "./toDoClass";
 import { lightFormat } from "date-fns";
+import { categories, setNewCategory } from "./manageCategories";
 
+// const populateDomItems = tasksMain
 
 
 const itemCardView = () => {
@@ -167,9 +169,49 @@ const itemCardView = () => {
     const complete = document.createElement("p");
 
     //project category
-    const category = document.createElement("p");
-    category.className = "item-card-category";
-    category.textContent = currentItem.category;
+    const projectsContainer = document.createElement("div");
+    const projectLabelText = document.createElement("p");
+    projectLabelText.textContent ="Project: "
+    projectsContainer.appendChild(projectLabelText)
+    const category = document.createElement("select");
+    category.id= "item-card-categories";
+    projectsContainer.appendChild(category);
+   
+  
+  
+    
+  category.setAttribute("name","item-card-categories");
+    
+   for (let i = 1; i<categories.length; i++){
+        const catOption =  document.createElement("option");
+        catOption.className = "category-option";
+        catOption.id = `category-${categories[i]}`;
+        catOption.setAttribute("value", categories[i].toLowerCase());
+        catOption.textContent = categories[i]
+        category.appendChild(catOption);
+        if (categories[i].toLowerCase() === catOption.value) {
+          
+            catOption.selected = true;
+           
+        }
+   }
+
+   //new category
+
+   
+    const createNewCategory = document.createElement("textArea");
+    createNewCategory.placeholder ='+ New project'
+  projectsContainer.appendChild(createNewCategory);
+  createNewCategory.addEventListener("change", () =>{
+    setNewCategory(createNewCategory.value)
+    currentItem.category = createNewCategory.value;
+    saveItem(currentItem);
+    // populateDomItems(items);
+    console.log(createNewCategory.value)
+    console.log(categories)
+    console.table(items);
+  })
+    
 
     const updateButton = document.createElement("button");
     updateButton.id = "update-button";
@@ -184,7 +226,8 @@ const itemCardView = () => {
 
     itemCard.append(
       title,
-      category,
+   
+      projectsContainer,
       dueDate,
       description,
       priorityDiv,

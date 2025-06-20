@@ -87,6 +87,7 @@ populateCategories();
 // console.table(items)
 content.appendChild(tasksIndex())
 content.append(tasksMain())
+// content.append(itemCardView())
 
 
 window.createNew = createNew;

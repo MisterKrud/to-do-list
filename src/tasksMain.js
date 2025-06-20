@@ -272,6 +272,13 @@ const card = document.getElementById("item-card")
     });
   });
 
+  const updateButton = document.getElementById("update-button");
+  // updateButton.addEventListener("click", () =>{
+  //   setTimeout(()=> {
+  //      populateDomItems(items)}, 1000);
+  //  ;
+  // })
+
   return  itemContainer;
 };
 
