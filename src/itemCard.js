@@ -58,7 +58,8 @@ const itemCardView = () => {
 
 //Task description
     const description = document.createElement("textarea");
-    description.id = currentItem.description;
+    description.id = "description";
+    description.rows = 1
     description.setAttribute("name", "description");
     description.placeholder = "Description";
     description.textContent = currentItem.description;
@@ -121,7 +122,10 @@ const itemCardView = () => {
 
 //set priority
     const priorityDiv = document.createElement("div");
-    priorityDiv.id = "priority";
+    priorityDiv.id = "priority-container";
+    const priorityLabelText = document.createElement("p");
+    priorityLabelText.textContent = "Priority: "
+    priorityDiv.appendChild(priorityLabelText);
 
     //   const prioritySelector = (() =>{
     const priorityList = document.createElement("select");

@@ -195,7 +195,9 @@ filter(activeProjectId)
 
 
 }
-
+newItemName.addEventListener("change", ()=>{
+  addNewButton.focus();
+})
 
 addNewButton.addEventListener("click",() => {
   saveNew(newItemName.value);
@@ -222,7 +224,6 @@ const card = document.getElementById("item-card")
  populateDomItems(items)
   
 
-//FIX THIS IT IS BROKEN
    const checkBoxes = document.querySelectorAll(".check-box");
 
  
