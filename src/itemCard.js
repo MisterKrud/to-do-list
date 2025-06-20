@@ -166,6 +166,7 @@ const itemCardView = () => {
 
     const complete = document.createElement("p");
 
+    //project category
     const category = document.createElement("p");
     category.className = "item-card-category";
     category.textContent = currentItem.category;

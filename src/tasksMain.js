@@ -31,32 +31,13 @@ const tasksMain = () => {
          newProject.id = "new-project";  
       const newTask = newItemName.value;
 
-      // const newProject = document.createElement("div");
-     
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-       
+    
  
 const itemCard = document.createElement("dialog")
 itemCard.id="item-card";
 content.appendChild(itemCard)
   
 
-//   console.log(`items in dom.js: ${items}`);
 
 
 //Put itmes from array in DOM
@@ -95,8 +76,7 @@ content.appendChild(itemCard)
 
 
     
-    
- 
+ //checkbox element
     const checkBox = document.createElement("input");
 
     checkBox.setAttribute("type", "checkbox");
@@ -242,7 +222,7 @@ const card = document.getElementById("item-card")
  populateDomItems(items)
   
 
-
+//FIX THIS IT IS BROKEN
    const checkBoxes = document.querySelectorAll(".check-box");
 
  
@@ -259,27 +239,34 @@ const card = document.getElementById("item-card")
       } else {
         box.classList.add("complete");
         box.classList.remove("incomplete");
+
         const completedItemToShift = document.getElementById(boxParentId);
+        
         completedItemToShift.classList.remove("selected");
         itemContainer.removeChild(completedItemToShift);
         itemContainer.appendChild(completedItemToShift);
         const itemDeleteButton = document.createElement("button")
-        itemDeleteButton.id = "item-delete-button"
+        itemDeleteButton.id = `${boxParentId}-delete`
+        itemDeleteButton.className = 'item-delete-button'
         itemDeleteButton.innerText = "x";
+        const completedItemContent = completedItemToShift.querySelector(".item-content")
+        completedItemToShift.removeChild(completedItemContent)
         completedItemToShift.appendChild(itemDeleteButton);
+        completedItemToShift.classList.add("completed-item")
 
 
-        
         // completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
       }     
       toggleComplete(items[idIndex]);
-    const itemDeleteButton = document.getElementById("item-delete-button")
+    const itemDeleteButton = document.getElementById(`${boxParentId}-delete`)
      itemDeleteButton.addEventListener("click", () => {
           
           console.table(items)
+          const itemPendingDelete = itemDeleteButton.parentElement
+          itemContainer.removeChild(itemPendingDelete)
           deleteToDoItem(items[idIndex])
           console.table(items)
-         populateDomItems(items)
+      
           
         })
     });

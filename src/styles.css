@@ -69,7 +69,7 @@ ul, li{
   
      display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: 2fr 1fr;
+    /* grid-template-rows: 2fr 1fr; */
     gap: 0.8rem;
     max-width: 1200px;
     margin: auto;
@@ -85,12 +85,13 @@ ul, li{
 #item-container{
     display: grid;
     border-radius: 1rem;
-   grid-area: 1 / 2 / 2 / 3;
-    gap: 8px;
+   grid-area: 1 / 2 / 1 / 3;
+    gap: .5em;
     background-color: #fefefe;
     padding:  2rem 1rem;
    box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
     0 1px 4px 0 rgba(0, 0, 0, .04);
+    
  
 }
 
@@ -104,6 +105,9 @@ ul, li{
     border-radius: 5px;
     display: grid;
     max-height: 3rem;
+
+    
+    
    
    
 }
@@ -111,6 +115,7 @@ ul, li{
 
 .item-content {
     display: flex;
+  
 }
 
 .category, .due-date {
@@ -121,8 +126,7 @@ ul, li{
 
 .complete, .incomplete{
     margin-top: -10px;
-    position: relative;
-    top: 1.8em;
+    
     /* left: 1px; */
     width: 15px;
     height: 15px;
@@ -131,16 +135,23 @@ ul, li{
     grid-area: 1 / 1 / -1/ 2;
 }
 
+.incomplete{
+position: relative;
+    top: 1.8em;
+}
+
 .complete {
     background-color: blue;
+    margin: auto 0;
+  
 }
 
 input[type="checkbox"]:is(.complete) {
     accent-color: gray                    ;
     text-decoration: line-through;
-    text-decoration: line-through;
-    position:relative;
-    top: 1.2rem;
+    
+    /* position:relative;
+    top: 0.6rem; */
 
 }
 
@@ -155,7 +166,12 @@ input[type="checkbox"]:is(.complete) {
     margin: 0 1.8rem 0.1rem;
     font-weight:600;
     color: #303030;
+   
     
+}
+
+.completed-item>.item-header{
+    margin: auto 10px auto 5px;
 }
 
 .notes{
@@ -176,12 +192,34 @@ input[type="checkbox"]:is(.complete) {
 .item-list-view:has(.complete){
     background-color: none;
     border: none;
+   
 }
 .item-list-view:has(.complete)>p{
     color: #b1b1b1;
     text-decoration: line-through;
     font-weight: normal;
 
+}
+
+.completed-item{
+ display: flex;
+    align-items: center;
+}
+
+.item-delete-button{
+    font-size: 12px;
+    background: #b4b4b4 !important;
+    color: #ffffff;
+    width: 22px;
+    height: 22px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    /* position: relative;
+    margin: -12px 0 0 5px;  */
+   
 }
 
 .project-name:hover{
@@ -197,7 +235,7 @@ input[type="checkbox"]:is(.complete) {
 
 #index-bar, #item-container{
     margin-top: 5px;
-    padding-bottom: 2rempx;
+    padding-bottom: 2rem;
     height: inherit;
     box-shadow: 0 2px 18px 0 rgba(0, 0, 0, .08),
     0 1px 4px 0 rgba(0, 0, 0, .04);
@@ -226,19 +264,21 @@ border: none;
    
     
     display: grid;
-    /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 3fr 1fr 6fr ; */
-    /* height: 100%; */
+  
     width: 100%;
    
 }
 
 .visible p{
     border: .5px grey solid;
-    line-height: .2rem;
-    gap: 0;
+  
+    /* gap: 0; */
 
 }
-
+#item-card, .visible{
+    
+    grid-template-rows: repeat(5, 1fr)  1fr 1fr  ;
+}
 
 
 #item-card-header{
@@ -341,7 +381,7 @@ button:active{
     margin: 5px;
     width: 40%;
 }
-#item-card, .visible{
-    grid-template-rows: repeat(5, 1fr) 5fr  1fr 1fr  ;
-}
+
+
+
 
