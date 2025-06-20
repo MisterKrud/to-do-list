@@ -38,14 +38,23 @@ const itemCardView = () => {
     title.textContent = currentItem.title;
         //Change title in cards
     title.addEventListener("change", () => {
-      currentItem.title = title.value;
+        const newTitle = title.value 
+      currentItem.title = newTitle;
+      activeItem.querySelector(".item-header").textContent = newTitle;
       saveItem(currentItem);
-      // mainView.populateDomItems(items)
+      
     });
 
 //Task content
-    const itemContent = document.createElement("div");
-    itemContent.className = "item-content";
+    const itemContent = document.createElement("textArea");
+    itemContent.id = "item-content";
+    itemContent.rows = 1;
+
+    itemContent.addEventListener("change", () => {
+        const newContent = itemContent.value;
+       saveItem(currentItem);
+    })
+
 
 //Task description
     const description = document.createElement("textarea");
@@ -95,8 +104,7 @@ const itemCardView = () => {
 
     dateUpdateButton.addEventListener("click", () => {
       currentItem.dueDate = lightFormat(datePicker.value, "d/M/yy");
-      console.log(`datePicker: ${datePicker.value}`)
-      console.log(`datePicker: ${currentItem.dueDate}`)
+      activeItem.querySelector(".due-date").textContent = ` | ${currentItem.dueDate}`
       saveItem(currentItem)  
       dueDate.textContent = `Due: ${currentItem.dueDate}`;
       calendarContainer.close();
@@ -110,6 +118,8 @@ const itemCardView = () => {
       
     })
 }
+
+//set priority
     const priorityDiv = document.createElement("div");
     priorityDiv.id = "priority";
 
@@ -146,8 +156,8 @@ const itemCardView = () => {
       saveItem(currentItem);
     });
 
-    // })
-
+  
+//Create notes
     const notes = document.createElement("textarea");
 
     notes.id = "notes";
@@ -170,6 +180,7 @@ const itemCardView = () => {
 
     //project category
     const projectsContainer = document.createElement("div");
+    projectsContainer.id = "projects-container";
     const projectLabelText = document.createElement("p");
     projectLabelText.textContent ="Project: "
     projectsContainer.appendChild(projectLabelText)
@@ -181,6 +192,8 @@ const itemCardView = () => {
   
     
   category.setAttribute("name","item-card-categories");
+  const currentCategory = activeItem.querySelector(".category")
+  console.log(currentCategory.textContent)
     
    for (let i = 1; i<categories.length; i++){
         const catOption =  document.createElement("option");
@@ -189,10 +202,15 @@ const itemCardView = () => {
         catOption.setAttribute("value", categories[i].toLowerCase());
         catOption.textContent = categories[i]
         category.appendChild(catOption);
-        if (categories[i].toLowerCase() === catOption.value) {
+        if (categories[i] === currentCategory.textContent) {
+            
+          
+           
           
             catOption.selected = true;
-           
+         
+        } else {
+            catOption.selected = false;
         }
    }
 
@@ -200,11 +218,20 @@ const itemCardView = () => {
 
    
     const createNewCategory = document.createElement("textArea");
+    createNewCategory.id="new-category";
     createNewCategory.placeholder ='+ New project'
   projectsContainer.appendChild(createNewCategory);
   createNewCategory.addEventListener("change", () =>{
-    setNewCategory(createNewCategory.value)
-    currentItem.category = createNewCategory.value;
+    const newProject = createNewCategory.value
+    setNewCategory(newProject)
+    const newOption = document.createElement("option")
+    newOption.className = "category-option";
+    newOption.id=`category-${newProject}`
+    newOption.textContent = newProject;
+    currentItem.category = newProject;
+   category.appendChild(newOption);
+    newOption.selected = true;
+    createNewCategory.value = null;
     saveItem(currentItem);
     // populateDomItems(items);
     console.log(createNewCategory.value)
