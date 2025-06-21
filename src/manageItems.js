@@ -1,5 +1,5 @@
 import { tasksIndex } from "./tasksIndex";
-
+const createProjectsList = tasksIndex;
 export const items = [];
 export const deletedItems = [];
 
@@ -42,7 +42,7 @@ export const deleteToDoItem = (item) => {
   console.log(`deleting ${item}`)
   items.splice(items.indexOf(item), 1);
   localStorage.removeItem(item.id);
-  renderIndexBar();
+ renderIndexBar()
  
 };
 
@@ -58,9 +58,9 @@ const renderIndexBar = () => {
   const indexBar = document.getElementById("index-bar");
   const projectsHeader = document.getElementById("projects-header");
   const projectsList = document.getElementById("projects-list");
-  const content = document.getElementById("content");
-   content.removeChild(indexBar);
-   content.appendChild(indexBar);
+  indexBar.innerHTML = '';
+ createProjectsList();
+ 
 
 }
 

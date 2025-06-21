@@ -35,15 +35,22 @@ const tasksMain = () => {
     
  
 const itemCard = document.createElement("dialog")
+
 itemCard.id="item-card";
+const cardInDom = document.querySelector("#item-card") != null;
+if (!cardInDom) {
 content.appendChild(itemCard)
+}
   
 
 
 
 //Put itmes from array in DOM
   const populateDomItems = (arr) => {
+    console.log('running populateDomItems')
+   
      itemContainer.innerHTML =''
+   
   arr.forEach((item) => {
    
     const completeClass = () => (item.complete ? "complete" : "incomplete");
@@ -83,7 +90,7 @@ content.appendChild(itemCard)
     checkBox.setAttribute("type", "checkbox");
     checkBox.setAttribute("class", "check-box");
     checkBox.classList.add(completeClass());
-
+ 
     itemContainer.prepend(itemListView);
         itemListView.append(checkBox, title, itemContent);
             itemContent.append(category, dueDate);
@@ -91,7 +98,7 @@ newItemName.value = '';
  newItemName.placeholder='Add task'
              addNew.append(addNewButton, newItemName);
  itemContainer.appendChild(addNew);
-            return itemListView;
+            // return itemListView;
   
   
   
@@ -118,30 +125,30 @@ newItemName.value = '';
  
 
 
+//Populate projects in index-bar
+// const projectsList = document.querySelector("ul");
 
-const projectsList = document.querySelector("ul");
+//    categories.forEach(category => {
+//         const project = document.createElement("li")
+//         project.className = "project-name";
+//         project.id = category;
+//         project.textContent = category;
+//         projectsList.appendChild(project);
 
-   categories.forEach(category => {
-        const project = document.createElement("li")
-        project.className = "project-name";
-        project.id = category;
-        project.textContent = category;
-        projectsList.appendChild(project);
-
-       project.addEventListener("click", () =>{
-           const projectNames = document.querySelectorAll(".project-name");
+//        project.addEventListener("click", () =>{
+//            const projectNames = document.querySelectorAll(".project-name");
          
-           projectNames.forEach(projName => projName.classList.remove("active"));
-            project.classList.add("active");
-            if(project.id === "All"){
-                if(project.className != "project-name active") {
-                populateDomItems(items)
-                } else {return} 
-            } else {
-            displayCurrentProject();
-            }
-        })
-    })
+//            projectNames.forEach(projName => projName.classList.remove("active"));
+//             project.classList.add("active");
+//             if(project.id === "All"){
+//                 if(project.className != "project-name active") {
+//                 populateDomItems(items)
+//                 } else {return} 
+//             } else {
+//             displayCurrentProject();
+//             }
+//         })
+//     })
 
 
      //highlight selected item
@@ -154,7 +161,7 @@ const projectsList = document.querySelector("ul");
       itemListView.forEach((listItem) => listItem.classList.remove("selected"));
       
       if (item.firstChild.className === "check-box complete"){
-        return} else {
+        return} 
 
           createItemCard(item)
     //     item.classList.add("selected");
@@ -165,12 +172,13 @@ const projectsList = document.querySelector("ul");
     //         itemCard.show()
     //         itemCard.classList.add("visible")
             
-      }
+     
     });
   })
 };
 
 const createItemCard = (selectedItem) => {
+ 
    selectedItem.classList.add("selected");
      itemCard.innerHTML = '';
         content.appendChild(itemCardView());
@@ -178,24 +186,27 @@ const createItemCard = (selectedItem) => {
        
             itemCard.show()
             itemCard.classList.add("visible")
+
 }
 //  const activeProject = document.querySelector(".active");
 //   const activeProjectId = activeProject.getAttribute("id") 
 
-const displayCurrentProject = () => {
-//get the id from the active project
+// const displayCurrentProject = () => {
+// //get the id from the active project
 
- const activeProject = document.querySelector(".active");
- const activeProjectId = activeProject.getAttribute("id") 
-//  console.log(`Just logging the string: ${activeProjectId}`)
-filter(activeProjectId)
- itemContainer.innerHTML = ''
-//  console.log(filteredCat)
- populateDomItems(filteredCat)
-//  itemContainer.className = 
+//  const activeProject = document.querySelector(".active");
+//  console.log(activeProject)
+//  const activeProjectId = activeProject.getAttribute("id") 
+//   console.log(activeProject, activeProjectId)
+// //  console.log(`Just logging the string: ${activeProjectId}`)
+// filter(activeProjectId)
+//  itemContainer.innerHTML = ''
+// //  console.log(filteredCat)
+//  populateDomItems(filteredCat)
+// //  itemContainer.className = 
 
 
-}
+// }
 newItemName.addEventListener("change", ()=>{
   addNewButton.focus();
 })
@@ -235,9 +246,20 @@ const card = document.getElementById("item-card")
       console.log(`box clicked`)
       const boxParentId = box.parentElement.id;    
       const idIndex = items.findIndex((item) => item.id === boxParentId);
-      if (box.getAttribute("class") === "complete") {
+      
+      if (box.getAttribute("class") === "check-box complete") {
+        const itemToRestore = document.getElementById(boxParentId)
+         itemToRestore.removeChild(itemToRestore.querySelector("button"))
+        itemToRestore.classList.remove("completed-item");
+     itemToRestore.classList.add("selected")
+     
+          // itemContainer.removeChild(itemToRestore);
+      itemContainer.prepend(itemToRestore);
         box.classList.add("incomplete");
         box.classList.remove("complete");
+  
+      
+    
       } else {
         box.classList.add("complete");
         box.classList.remove("incomplete");
@@ -253,6 +275,7 @@ const card = document.getElementById("item-card")
         itemDeleteButton.innerText = "x";
         const completedItemContent = completedItemToShift.querySelector(".item-content")
         completedItemToShift.removeChild(completedItemContent)
+        completedItemToShift.appendChild(completedItemContent)
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item")
 
@@ -260,20 +283,26 @@ const card = document.getElementById("item-card")
         // completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
       }     
       toggleComplete(items[idIndex]);
-    const itemDeleteButton = document.getElementById(`${boxParentId}-delete`)
-     itemDeleteButton.addEventListener("click", () => {
+   
+    });
+  });
+
+   const itemDeleteButtons = document.querySelectorAll(".item-delete-button")
+   itemDeleteButtons.forEach(button =>  
+   button.addEventListener("click", () => {
           
-          console.table(items)
-          const itemPendingDelete = itemDeleteButton.parentElement
+          console.table(items);
+          const itemPendingDelete = button.parentElement;
+          
+          const itemPendingDeleteId = button.parentElement.id;
+          const itemPendingDeleteIndex = items.findIndex(item => item.id = itemPendingDeleteId)
           itemContainer.removeChild(itemPendingDelete)
-          deleteToDoItem(items[idIndex])
+          deleteToDoItem(items[itemPendingDeleteIndex])
           console.table(items)
       
           
         })
-    });
-  });
-
+) 
   const updateButton = document.getElementById("update-button");
   // updateButton.addEventListener("click", () =>{
   //   setTimeout(()=> {

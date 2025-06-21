@@ -17,6 +17,13 @@ const itemCardView = () => {
     return;
   } else {
 
+    const projectList = document.getElementById("projects-list");
+    const indexBar = document.getElementById("index-bar")
+
+    // const renderProjectList = () =>{
+    //     indexBar.removeChild(projectList);
+        
+    // }
 
 
 
@@ -197,7 +204,7 @@ const itemCardView = () => {
     
   category.setAttribute("name","item-card-categories");
   const currentCategory = activeItem.querySelector(".category")
-  console.log(currentCategory.textContent)
+//   console.log(currentCategory.textContent)
     
    for (let i = 1; i<categories.length; i++){
         const catOption =  document.createElement("option");
