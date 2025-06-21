@@ -1,9 +1,10 @@
 import { items } from "./manageItems";
 import { toggleComplete, deleteToDoItem } from "./manageItems";
 import { categories, filter, filteredCat} from "./manageCategories";
-import { projectsList} from "./tasksIndex";
+import { tasksIndex } from "./tasksIndex";
 import { itemCardView } from "./itemCard";
 import { createNew as saveNew } from "./newItem";
+
 
 
 

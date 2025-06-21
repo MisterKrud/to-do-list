@@ -15,11 +15,7 @@ const tasksIndex = () => {
     const projectsList = document.createElement("ul");
     projectsList.id="projects-list";
 
-    // const viewAllItems = document.createElement("li");
-    // viewAllItems.id = "view-all"
-    // viewAllItems.className = "project-name";
-    // viewAllItems.textContent = "View all"
-    // projectsList.appendChild(viewAllItems)
+  
     const mainScreen = document.getElementById("item-container")
     content.appendChild(indexBar)
    

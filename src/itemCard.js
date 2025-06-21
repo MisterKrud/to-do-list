@@ -218,6 +218,16 @@ const itemCardView = () => {
         }
    }
 
+
+//change category - FIX THIS
+category.addEventListener("change", () => {
+const categoryChange = category.querySelector("active")
+console.log(categoryChange)
+
+
+
+})
+
    //new category
 
    
@@ -237,7 +247,8 @@ const itemCardView = () => {
     newOption.selected = true;
     createNewCategory.value = null;
     saveItem(currentItem);
-    // populateDomItems(items);
+   const activeItemCategory =    activeItem.querySelector(".category")
+    activeItemCategory.textContent = newProject;
     console.log(createNewCategory.value)
     console.log(categories)
     console.table(items);
