@@ -107,6 +107,7 @@ ul, li{
     border-radius: 5px;
     display: grid;
     max-height: 3rem;
+    cursor: pointer;
 
     
     

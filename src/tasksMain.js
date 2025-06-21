@@ -12,8 +12,11 @@ const tasksMain = () => {
   const content = document.getElementById("content");
   const itemContainer = document.createElement("div");
   itemContainer.setAttribute("id", "item-container");
-  content.appendChild(itemContainer);
 
+  const containerInDom = document.querySelector("#item-container") != null
+  if(!containerInDom){
+  content.appendChild(itemContainer);
+  }
 
 
 
@@ -47,7 +50,7 @@ content.appendChild(itemCard)
 
 //Put itmes from array in DOM
   const populateDomItems = (arr) => {
-    console.log('running populateDomItems')
+    console.log(`running populateDomItems for ${arr}`)
    
      itemContainer.innerHTML =''
    
@@ -80,26 +83,34 @@ content.appendChild(itemCard)
         complete.innerText = completeClass();
     const category = document.createElement("p");
         category.className = "category";
-        category.textContent = item.category;
+      const categoryName = item.category
+        category.textContent = categoryName
+        category.classList.add(categoryName.toLowerCase())
+        console.log(`Category: ${category.className}`);
+
+        
+        
 
 
-    
  //checkbox element
     const checkBox = document.createElement("input");
 
     checkBox.setAttribute("type", "checkbox");
     checkBox.setAttribute("class", "check-box");
     checkBox.classList.add(completeClass());
- 
+//  const categoryListView = (project) => document.querySelectorAll(project)
+// const taskListView = categoryListView(project)
+
     itemContainer.prepend(itemListView);
         itemListView.append(checkBox, title, itemContent);
             itemContent.append(category, dueDate);
-newItemName.value = '';
+        newItemName.value = '';
  newItemName.placeholder='Add task'
-             addNew.append(addNewButton, newItemName);
+ addNew.append(addNewButton, newItemName);
  itemContainer.appendChild(addNew);
-            // return itemListView;
-  
+             
+            return itemListView;
+    
   
   
   
@@ -115,12 +126,9 @@ newItemName.value = '';
 };
 
      
- 
+
 
  
-
- 
-
 
  
 
@@ -153,6 +161,7 @@ newItemName.value = '';
 
      //highlight selected item
    const highlightSelectedItem = () => {
+    console.log('highlightSelected()')
     const itemListView = document.querySelectorAll(".item-list-view"); 
    
   itemListView.forEach((item) => {
@@ -310,9 +319,69 @@ const card = document.getElementById("item-card")
   //  ;
   // })
 
-  return  itemContainer;
+   const projects = Array.from(document.querySelectorAll(".project-name"));
+
+ console.log(`itemContainer: ${itemContainer}`)
+    projects.forEach(proj => {    
+       const allItems = Array.from(document.querySelectorAll(".category"))
+        const allTasks = document.querySelectorAll(".item-list-view")
+ let domItems = []
+ proj.addEventListener("click", () =>{
+          
+          
+           projects.forEach(projName => projName.classList.remove("active"));
+            proj.classList.add("active");
+            if(proj.id === "all"){
+              
+                  
+                    itemContainer.innerHTML=''
+                  itemContainer.appendChild(addNew)
+                   allTasks.forEach(task => itemContainer.prepend(task))
+               
+           
+              
+         
+               
+         
+        
+            } else {
+            
+           
+           const projectItems = allItems.filter((item)=> item.textContent === proj.textContent)
+              itemContainer.innerHTML=''
+               itemContainer.appendChild(addNew)
+         
+            projectItems.forEach(projectItem => {
+                const categoryParent = projectItem.parentElement;
+                const itemElement = categoryParent.parentElement;
+                document.querySelector("#item-container").prepend(itemElement)
+            })
+            
+            
+               
+            }
+        })
+    })
+
+  return itemContainer;
 };
 
 // page()
 console.log('tasksMain')
 export { tasksMain };
+
+
+// function outerFunction() {
+//   function innerFunction() {
+//     console.log("Hello from innerFunction!");
+//   }
+
+//   return {
+//     doSomething: () => {
+//       innerFunction();
+//     },
+//     innerFunction // <- expose it
+//   };
+// }
+
+// export default outerFunction;

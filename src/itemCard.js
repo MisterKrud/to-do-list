@@ -14,7 +14,7 @@ const itemCardView = () => {
   const activeItem = document.querySelector(".selected");
   const activeItemId = activeItem.getAttribute("id");
   if (!activeItemId) {
-    return;
+    return
   } else {
 
     const projectList = document.getElementById("projects-list");

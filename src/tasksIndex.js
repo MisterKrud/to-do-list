@@ -2,13 +2,15 @@ import { items } from "./manageItems";
 import { categories, filter, filteredCat } from "./manageCategories";
 import { tasksMain } from "./tasksMain";
 
-const populateDomItems = tasksMain;
+// const mainScreen = tasksMain();
 // const displayCurrentProject = tasksMain;
 
-
+const addNew = document.querySelector("#add-new");
+console.log(document.querySelector("#add-new"))
+console.log(addNew)
 
 const removeItemListViewChildren = () =>{
-    const itemContainer = document.getElementById("item-container");
+    
    
     const itemsInList = document.querySelectorAll(".item-list-view");
     
@@ -33,7 +35,7 @@ const displayCurrentProject = () => {
 filter(activeProject.textContent)
 console.log(activeProject.textContent)
  console.table(filteredCat)
- populateDomItems(filteredCat)
+//  mainScreen.populateDomItems(filteredCat)
 //  itemContainer.className = 
 
 
@@ -63,29 +65,68 @@ const tasksIndex = () => {
         project.textContent = category;
         projectsList.appendChild(project);
 
-       project.addEventListener("click", () =>{
-           const projectNames = document.querySelectorAll(".project-name");
+    //    project.addEventListener("click", () =>{
+    //        const projectNames = document.querySelectorAll(".project-name");
          
-           projectNames.forEach(projName => projName.classList.remove("active"));
-            project.classList.add("active");
-            if(project.id === "all"){
-                if(project.className != "project-name active") {
+    //        projectNames.forEach(projName => projName.classList.remove("active"));
+    //         project.classList.add("active");
+    //         if(project.id === "all"){
+    //             if(project.className != "project-name active") {
                    
                
            
-                populateDomItems(items)
+    //             populateDomItems(items)
+    //             } 
+         
+               
+         
+        
+    //         } else {
+    //            displayCurrentProject()
+    //             console.log(filteredCat)
+    //         }
+    //     })
+    })
+ const projects = Array.from(document.querySelectorAll(".project-name"));
+ const itemContainer = document.querySelector("#item-container");
+ console.log(`itemContainer: ${itemContainer}`)
+    projects.forEach(proj => {    
+ 
+ proj.addEventListener("click", () =>{
+          
+          
+           projects.forEach(projName => projName.classList.remove("active"));
+            proj.classList.add("active");
+            if(proj.id === "all"){
+                if(proj.className != "project-name active") {
+                    document.querySelector("#item-container").innerHTML=''
+                   
+                   const allTasks = document.querySelectorAll(".item-list-view")
+                   allTasks.forEach(task => document.querySelector("#item-container").prepend(task))
+               
+           
+              
                 } 
          
                
          
         
             } else {
-               displayCurrentProject()
-                console.log(filteredCat)
+            const allItems = Array.from(document.querySelectorAll(".category"))
+           const projectItems = allItems.filter((item)=> item.textContent === proj.textContent)
+               document.querySelector("#item-container").innerHTML=''
+         
+            projectItems.forEach(projectItem => {
+                const categoryParent = projectItem.parentElement;
+                const itemElement = categoryParent.parentElement;
+                document.querySelector("#item-container").prepend(itemElement)
+            })
+            
+            
+               
             }
         })
     })
-
    
    
     
