@@ -108,7 +108,7 @@ content.appendChild(itemCard)
  newItemName.placeholder='Add task'
  addNew.append(addNewButton, newItemName);
  itemContainer.appendChild(addNew);
-             
+      
             return itemListView;
     
   
@@ -160,6 +160,7 @@ content.appendChild(itemCard)
 
 
      //highlight selected item
+     
    const highlightSelectedItem = () => {
     console.log('highlightSelected()')
     const itemListView = document.querySelectorAll(".item-list-view"); 
@@ -187,9 +188,11 @@ content.appendChild(itemCard)
 };
 
 const createItemCard = (selectedItem) => {
- 
+ content.removeChild(itemCard)
    selectedItem.classList.add("selected");
+   content.appendChild(itemCard)
      itemCard.innerHTML = '';
+     
         content.appendChild(itemCardView());
         content.classList.add("three-columns");
        

@@ -5,41 +5,41 @@ import { tasksMain } from "./tasksMain";
 // const mainScreen = tasksMain();
 // const displayCurrentProject = tasksMain;
 
-const addNew = document.querySelector("#add-new");
-console.log(document.querySelector("#add-new"))
-console.log(addNew)
+// const addNew = document.querySelector("#add-new");
+// console.log(document.querySelector("#add-new"))
+// console.log(addNew)
 
-const removeItemListViewChildren = () =>{
+// const removeItemListViewChildren = () =>{
     
    
-    const itemsInList = document.querySelectorAll(".item-list-view");
+//     const itemsInList = document.querySelectorAll(".item-list-view");
     
-    for (let i=0; i< itemsInList.length; i++) {
-if(itemsInList.length >1){
-        itemContainer.removeChild(itemsInList[i]);
-    }
-}}
+//     for (let i=0; i< itemsInList.length; i++) {
+// if(itemsInList.length >1){
+//         itemContainer.removeChild(itemsInList[i]);
+//     }
+// }}
 
 
 
-const displayCurrentProject = () => {
+// const displayCurrentProject = () => {
    
-    console.log('running displayCurrentProject')
-//get the id from the active project
-// const itemContainer = document.querySelector("item-container")
- const activeProject = document.querySelector(".active");
+//     console.log('running displayCurrentProject')
+// //get the id from the active project
+// // const itemContainer = document.querySelector("item-container")
+//  const activeProject = document.querySelector(".active");
 
- const activeProjectId = activeProject.getAttribute("id") 
-  console.log(activeProject, activeProjectId)
-//  console.log(`Just logging the string: ${activeProjectId}`)
-filter(activeProject.textContent)
-console.log(activeProject.textContent)
- console.table(filteredCat)
-//  mainScreen.populateDomItems(filteredCat)
-//  itemContainer.className = 
+//  const activeProjectId = activeProject.getAttribute("id") 
+//   console.log(activeProject, activeProjectId)
+// //  console.log(`Just logging the string: ${activeProjectId}`)
+// filter(activeProject.textContent)
+// console.log(activeProject.textContent)
+//  console.table(filteredCat)
+// //  mainScreen.populateDomItems(filteredCat)
+// //  itemContainer.className = 
 
 
-}
+// }
 
 const tasksIndex = () => {
     const content = document.getElementById("content");

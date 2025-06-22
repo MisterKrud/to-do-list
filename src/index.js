@@ -8,6 +8,7 @@ import { changeDueDate, dateIsPast } from "./manageDueDates.js";
 import { tasksMain } from "./tasksMain.js"
 import { tasksIndex } from "./tasksIndex.js";
 import { itemCardView } from "./itemCard.js";
+import {deletion } from "./deletion.js";
 
 
 // localStorage.clear();

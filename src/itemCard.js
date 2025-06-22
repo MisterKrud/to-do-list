@@ -88,25 +88,24 @@ const itemCardView = () => {
     const datePicker = document.createElement("input");
     datePicker.setAttribute("type", "date");
     datePicker.id = "date-picker";
-    if(content.contains(document.getElementById("calendar-container"))){
-        console.log('calendarContainer already in dom')
-    } else {
-    content.appendChild(calendarContainer);
-    calendarContainer.appendChild(datePicker);
+
     const dateButtonDiv = document.createElement("div");
     dateButtonDiv.id = "date-button-div";
     const dateUpdateButton = document.createElement("button");
-    calendarContainer.appendChild(dateButtonDiv);
+
     dateUpdateButton.textContent = "Save";
     dateUpdateButton.className = "date-button";
     const dateCancelButton = document.createElement("button");
     dateCancelButton.textContent = "Cancel";
 
     dateCancelButton.className = "date-button";
-    dateButtonDiv.append(dateUpdateButton, dateCancelButton);
+ 
 
     dueDate.addEventListener("click", () => {
-       
+        content.appendChild(calendarContainer);
+    calendarContainer.appendChild(datePicker);
+    calendarContainer.appendChild(dateButtonDiv);
+     dateButtonDiv.append(dateUpdateButton, dateCancelButton);
       calendarContainer.showModal();
     });
 
@@ -116,16 +115,17 @@ const itemCardView = () => {
       saveItem(currentItem)  
       dueDate.textContent = `Due: ${currentItem.dueDate}`;
       calendarContainer.close();
+      content.removeChild(calendarContainer)
       
     });
 
     dateCancelButton.addEventListener("click", () => {
         calendarContainer.close()
-        
+          content.removeChild(calendarContainer)
       
       
     })
-}
+// }
 
 //set priority
     const priorityDiv = document.createElement("div");
@@ -225,12 +225,14 @@ const itemCardView = () => {
         }
    }
 
-
+const activeItemCategory =    activeItem.querySelector(".category")
 //change category - FIX THIS
 category.addEventListener("change", () => {
-const categoryChange = category.querySelector("active")
-console.log(categoryChange)
-
+    const changedCategory = category.options[category.selectedIndex].text
+currentItem.category = changedCategory
+console.log(category.options[category.selectedIndex].text)
+activeItemCategory.textContent = changedCategory;
+saveItem(currentItem);
 
 
 })
@@ -244,6 +246,10 @@ console.log(categoryChange)
   projectsContainer.appendChild(createNewCategory);
   createNewCategory.addEventListener("change", () =>{
     const newProject = createNewCategory.value
+    if(categories.includes(newProject)){
+        console.log('category already exists - saving item in project with this name')
+
+    } else {
     setNewCategory(newProject)
     const newOption = document.createElement("option")
     newOption.className = "category-option";
@@ -253,8 +259,9 @@ console.log(categoryChange)
    category.appendChild(newOption);
     newOption.selected = true;
     createNewCategory.value = null;
+    }
     saveItem(currentItem);
-   const activeItemCategory =    activeItem.querySelector(".category")
+   
     activeItemCategory.textContent = newProject;
     console.log(createNewCategory.value)
     console.log(categories)
@@ -290,6 +297,7 @@ console.log(categoryChange)
       content.classList.remove("three-columns");
       itemCard.close();
       itemCard.classList.remove("visible");
+     
     };
 
     cancelButton.addEventListener("click", () => {
