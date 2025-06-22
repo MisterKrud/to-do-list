@@ -17,8 +17,7 @@ const itemCardView = () => {
     return
   } else {
 
-    const projectList = document.getElementById("projects-list");
-    const indexBar = document.getElementById("index-bar")
+   
 
     // const renderProjectList = () =>{
     //     indexBar.removeChild(projectList);
@@ -189,7 +188,7 @@ const itemCardView = () => {
 
     const complete = document.createElement("p");
 
-    //project category
+    //Task project category
     const projectsContainer = document.createElement("div");
     projectsContainer.id = "projects-container";
     const projectLabelText = document.createElement("p");
@@ -204,7 +203,16 @@ const itemCardView = () => {
     
   category.setAttribute("name","item-card-categories");
   const currentCategory = activeItem.querySelector(".category")
-//   console.log(currentCategory.textContent)
+   const projectList = document.getElementById("projects-list");
+    const indexBar = document.getElementById("index-bar")
+const saveTaskChanges = (item) => {
+    saveItem(item);
+    const newProject = document.createElement("li")
+    newProject.className = "project-name";
+    newProject.textContent = item.category
+    projectList.appendChild(newProject);
+
+}
     
    for (let i = 1; i<categories.length; i++){
         const catOption =  document.createElement("option");
@@ -226,24 +234,26 @@ const itemCardView = () => {
    }
 
 const activeItemCategory =    activeItem.querySelector(".category")
-//change category - FIX THIS
+//change project category
 category.addEventListener("change", () => {
     const changedCategory = category.options[category.selectedIndex].text
 currentItem.category = changedCategory
 console.log(category.options[category.selectedIndex].text)
 activeItemCategory.textContent = changedCategory;
-saveItem(currentItem);
+saveTaskChanges(currentItem);;
 
 
 })
 
-   //new category
+   //new project category category
 
    
     const createNewCategory = document.createElement("textArea");
     createNewCategory.id="new-category";
     createNewCategory.placeholder ='+ New project'
   projectsContainer.appendChild(createNewCategory);
+
+  //event listener for changing category
   createNewCategory.addEventListener("change", () =>{
     const newProject = createNewCategory.value
     if(categories.includes(newProject)){
@@ -260,7 +270,7 @@ saveItem(currentItem);
     newOption.selected = true;
     createNewCategory.value = null;
     }
-    saveItem(currentItem);
+    saveTaskChanges(currentItem);
    
     activeItemCategory.textContent = newProject;
     console.log(createNewCategory.value)
@@ -268,7 +278,7 @@ saveItem(currentItem);
     console.table(items);
   })
     
-
+//update and cancel buttons for card view
     const updateButton = document.createElement("button");
     updateButton.id = "update-button";
     updateButton.textContent = "Update";
@@ -280,6 +290,7 @@ saveItem(currentItem);
     const buttonDiv = document.createElement("div");
     buttonDiv.id = "button-container";
 
+    //Put card in dom
     itemCard.append(
       title,
    
