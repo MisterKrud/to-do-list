@@ -288,7 +288,7 @@ const card = document.getElementById("item-card")
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item")
 
-
+        // deleteTask()
         // completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
       }     
       toggleComplete(items[idIndex]);
@@ -296,22 +296,26 @@ const card = document.getElementById("item-card")
     });
   });
 
-   const itemDeleteButtons = document.querySelectorAll(".item-delete-button")
-   itemDeleteButtons.forEach(button =>  
-   button.addEventListener("click", () => {
+//   const deleteTask = () => {
+//   const itemDeleteButtons = Array.from(document.querySelectorAll(".item-delete-button"))
+//    console.log(`Delet buttons: ${itemDeleteButtons}`)
+//    itemDeleteButtons.forEach(button =>  
+//    button.addEventListener("click", () => {
           
-          console.table(items);
-          const itemPendingDelete = button.parentElement;
+//           console.table(items);
+//           const itemPendingDelete = button.parentElement;
           
-          const itemPendingDeleteId = button.parentElement.id;
-          const itemPendingDeleteIndex = items.findIndex(item => item.id = itemPendingDeleteId)
-          itemContainer.removeChild(itemPendingDelete)
-          deleteToDoItem(items[itemPendingDeleteIndex])
-          console.table(items)
+//           const itemPendingDeleteId = button.parentElement.id;
+//           const itemPendingDeleteIndex = items.findIndex(item => item.id = itemPendingDeleteId)
+//           itemContainer.removeChild(itemPendingDelete)
+//           deleteToDoItem(items[itemPendingDeleteIndex])
+//           console.table(items)
       
           
-        })
-) 
+//         })
+// ) 
+// }
+   
   const updateButton = document.getElementById("update-button");
   // updateButton.addEventListener("click", () =>{
   //   setTimeout(()=> {
@@ -362,6 +366,8 @@ const card = document.getElementById("item-card")
             }
         })
     })
+
+   
 
   return itemContainer;
 };
