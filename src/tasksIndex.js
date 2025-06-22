@@ -64,32 +64,21 @@ const tasksIndex = () => {
         project.id = category.toLowerCase();
         project.textContent = category;
         projectsList.appendChild(project);
-
-    //    project.addEventListener("click", () =>{
-    //        const projectNames = document.querySelectorAll(".project-name");
-         
-    //        projectNames.forEach(projName => projName.classList.remove("active"));
-    //         project.classList.add("active");
-    //         if(project.id === "all"){
-    //             if(project.className != "project-name active") {
-                   
-               
-           
-    //             populateDomItems(items)
-    //             } 
-         
-               
-         
-        
-    //         } else {
-    //            displayCurrentProject()
-    //             console.log(filteredCat)
-    //         }
-    //     })
     })
- const projects = Array.from(document.querySelectorAll(".project-name"));
- const itemContainer = document.querySelector("#item-container");
- console.log(`itemContainer: ${itemContainer}`)
+   
+
+   
+   
+   
+   
+   
+  const projects =  Array.from(document.querySelectorAll(".project-name"))
+   
+   
+   
+   
+    
+
     projects.forEach(proj => {    
  
  proj.addEventListener("click", () =>{
@@ -112,10 +101,12 @@ const tasksIndex = () => {
          
         
             } else {
+                
             const allItems = Array.from(document.querySelectorAll(".category"))
+           
            const projectItems = allItems.filter((item)=> item.textContent === proj.textContent)
                document.querySelector("#item-container").innerHTML=''
-         
+      
             projectItems.forEach(projectItem => {
                 const categoryParent = projectItem.parentElement;
                 const itemElement = categoryParent.parentElement;

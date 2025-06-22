@@ -4,6 +4,7 @@ import { categories, filter, filteredCat} from "./manageCategories";
 import { tasksIndex } from "./tasksIndex";
 import { itemCardView } from "./itemCard";
 import { createNew as saveNew } from "./newItem";
+// import { deleteSelectedTask } from "./deletion";
 
 
 
@@ -29,6 +30,8 @@ const tasksMain = () => {
     const addNewButton = document.createElement("button");
         addNewButton.id = "add-new-button";
         addNewButton.textContent = "+";
+
+   
     
     const newProject = document.createElement("input");
         newProject.setAttribute("type", "text");
@@ -53,6 +56,12 @@ content.appendChild(itemCard)
     console.log(`running populateDomItems for ${arr}`)
    
      itemContainer.innerHTML =''
+     itemContainer.appendChild(addNew)
+  
+    
+        newItemName.value = '';
+ newItemName.placeholder='Add task'
+ addNew.append(addNewButton, newItemName);
    
   arr.forEach((item) => {
    
@@ -97,17 +106,16 @@ content.appendChild(itemCard)
 
     checkBox.setAttribute("type", "checkbox");
     checkBox.setAttribute("class", "check-box");
+    checkBox.id = `check-${item.id}`
     checkBox.classList.add(completeClass());
 //  const categoryListView = (project) => document.querySelectorAll(project)
 // const taskListView = categoryListView(project)
 
-    itemContainer.prepend(itemListView);
+    itemContainer.appendChild(itemListView);
         itemListView.append(checkBox, title, itemContent);
             itemContent.append(category, dueDate);
-        newItemName.value = '';
- newItemName.placeholder='Add task'
- addNew.append(addNewButton, newItemName);
- itemContainer.appendChild(addNew);
+      
+ 
       
             return itemListView;
     
@@ -291,7 +299,47 @@ const card = document.getElementById("item-card")
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item")
 
-        // deleteTask()
+
+
+ const itemDeleteButtons = document.querySelectorAll(".item-delete-button")
+   console.log(`Delete buttons: ${itemDeleteButtons}`)
+   itemDeleteButtons.forEach(button =>  
+   button.addEventListener("click", () => {
+          
+          console.table(items);
+          const itemPendingDelete = button.parentElement;
+          
+          const itemPendingDeleteId = button.parentElement.id;
+          console.log(`parent id: ${itemPendingDeleteId}` )
+          console.log(`button id" ${button.id}`)
+          const itemPendingDeleteIndex = items.findIndex(item => item.id === itemPendingDeleteId)
+          console.log('deleting:')
+          console.table(items[itemPendingDeleteIndex])
+          
+          deleteToDoItem(items[itemPendingDeleteIndex])
+          itemContainer.removeChild(itemPendingDelete)
+          console.table(items)
+          console.table(localStorage)
+      
+          
+        })
+    
+) 
+itemDeleteButtons.forEach(button =>{
+  button.addEventListener("mouseover", ()=> {
+    const itemPendingDelete = button.parentElement;
+          
+          const itemPendingDeleteId = button.parentElement.id;
+          const itemPendingDeleteIndex = items.findIndex(item => item.id === itemPendingDeleteId)
+    console.log(`id of button ${button.id}`)
+    console.log(`id of parent: ${button.parentElement.id}`)
+    console.log(`itemPendingDelete.id: ${itemPendingDeleteId}`)
+    console.log(`item to delte index: ${itemPendingDeleteIndex}`)
+})
+})
+
+
+      
         // completedItemToShift.removeChild(completedItemToShift.querySelector("div"));   
       }     
       toggleComplete(items[idIndex]);
@@ -299,9 +347,9 @@ const card = document.getElementById("item-card")
     });
   });
 
-//   const deleteTask = () => {
+  
 //   const itemDeleteButtons = Array.from(document.querySelectorAll(".item-delete-button"))
-//    console.log(`Delet buttons: ${itemDeleteButtons}`)
+//    console.log(`Delete buttons: ${itemDeleteButtons}`)
 //    itemDeleteButtons.forEach(button =>  
 //    button.addEventListener("click", () => {
           
@@ -317,7 +365,7 @@ const card = document.getElementById("item-card")
           
 //         })
 // ) 
-// }
+
    
   const updateButton = document.getElementById("update-button");
   // updateButton.addEventListener("click", () =>{
@@ -375,22 +423,9 @@ const card = document.getElementById("item-card")
   return itemContainer;
 };
 
-// page()
+
 console.log('tasksMain')
 export { tasksMain };
 
 
-// function outerFunction() {
-//   function innerFunction() {
-//     console.log("Hello from innerFunction!");
-//   }
 
-//   return {
-//     doSomething: () => {
-//       innerFunction();
-//     },
-//     innerFunction // <- expose it
-//   };
-// }
-
-// export default outerFunction;

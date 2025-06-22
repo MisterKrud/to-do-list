@@ -273,12 +273,12 @@ border: none;
    
 }
 
-.visible p{
+/* .visible p{
     border: .5px grey solid;
   
-    /* gap: 0; */
+    gap: 0;
 
-}
+} */
 #item-card, .visible{
     
     grid-template-rows: repeat(5, 1fr)  1fr 1fr  ;
@@ -320,7 +320,7 @@ border: none;
     align-items: flex-end;
     /* align-self: flex-end; */
     height: 100%;
-    border:gray .5px solid;
+    /* border:gray .5px solid; */
 }
 
 #update-button, #cancel-button{
@@ -392,7 +392,7 @@ button:active{
 #projects-container{
     display: flex;
     justify-content: space-between;
-    border: gray 1px solid;
+    /* border: gray 1px solid; */
     align-items:center;
     padding: 0;
 }

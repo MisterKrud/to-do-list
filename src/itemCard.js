@@ -3,6 +3,7 @@ import { items, saveItem } from "./manageItems";
 import { priority } from "./toDoClass";
 import { lightFormat } from "date-fns";
 import { categories, setNewCategory } from "./manageCategories";
+import { tasksIndex } from "./tasksIndex";
 
 // const populateDomItems = tasksMain
 
@@ -186,6 +187,7 @@ const itemCardView = () => {
       notes.textContent = currentItem.notes;
     });
 
+    //Task complete - unfinshed
     const complete = document.createElement("p");
 
     //Task project category
@@ -209,6 +211,7 @@ const saveTaskChanges = (item) => {
     saveItem(item);
     const newProject = document.createElement("li")
     newProject.className = "project-name";
+    newProject.id = item.category.toLowerCase()
     newProject.textContent = item.category
     projectList.appendChild(newProject);
 
@@ -240,7 +243,9 @@ category.addEventListener("change", () => {
 currentItem.category = changedCategory
 console.log(category.options[category.selectedIndex].text)
 activeItemCategory.textContent = changedCategory;
-saveTaskChanges(currentItem);;
+activeItemCategory.className = `category ${changedCategory.toLowerCase()}`
+category.selected = true;
+saveItem(currentItem);
 
 
 })
@@ -258,7 +263,7 @@ saveTaskChanges(currentItem);;
     const newProject = createNewCategory.value
     if(categories.includes(newProject)){
         console.log('category already exists - saving item in project with this name')
-
+        saveItem(currentItem)
     } else {
     setNewCategory(newProject)
     const newOption = document.createElement("option")
@@ -266,15 +271,25 @@ saveTaskChanges(currentItem);;
     newOption.id=`category-${newProject}`
     newOption.textContent = newProject;
     currentItem.category = newProject;
+    const activeItemCategory = activeItem.querySelector(".category")
+    activeItemCategory.className = `category ${newProject.toLowerCase()}`
+   
+    
+    createNewCategory.value = null;
    category.appendChild(newOption);
     newOption.selected = true;
-    createNewCategory.value = null;
+     saveTaskChanges(currentItem);
+   
+    
+   
+  
     }
-    saveTaskChanges(currentItem);
+  
    
     activeItemCategory.textContent = newProject;
     console.log(createNewCategory.value)
     console.log(categories)
+   
     console.table(items);
   })
     

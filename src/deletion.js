@@ -1,16 +1,27 @@
-import { tasksMain } from "./tasksMain";
-export const deletetion = () =>{
-const main = tasksMain();
+// import { tasksMain } from "./tasksMain";
+// import { items, deleteToDoItem } from "./manageItems";
 
-const itemContainer = tasksMain.itemContainer;
- 
+// if(document.querySelector("#item-container") === null){
+//     setTimeout(() => {
+//         console.log('waiting for dom population')
+       
 
 
-const testFunction = () => {
-console.log(`Delete Module: ${itemContainer}`)
-}
+//     }, 1);
+    
+// }
 
-testFunction()
-return testFunction
- }
+// const content = document.getElementById("content")
+// const container = main.itemContainer
+// // don't forget to try array.from if this doesn't work
+
+// export const deleteSelectedTask = (id) => {
+//    const deleteButton = document.querySelector(".item-delete-button")
+//     const taskItem = deleteButton.parentElement
+//     const taskId = taskItem.id;
+//     const arrayItemIndex = items.findIndex(() => items.id === taskId)
+//     const itemToDelete = items[arrayItemIndex]
+//     container.removeChild(taskItem)
+//    deleteToDoItem(itemToDelete)
+//     }
 

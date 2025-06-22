@@ -39,10 +39,12 @@ const saveToDoItem = (item) => {
 };
 
 export const deleteToDoItem = (item) => {
-  console.log(`deleting ${item}`)
+  console.log(`deleting ${item.title}`)
+  const deleteId = item.id;
+  console.log(item.id)
   items.splice(items.indexOf(item), 1);
-  localStorage.removeItem(item.id);
- renderIndexBar()
+  localStorage.removeItem(deleteId);
+//  renderIndexBar()
  
 };
 

@@ -103,4 +103,4 @@ window.setNewCategory = setNewCategory;
 window.filter = filter
 
 
-console.log('index')
+// console.log('index')
