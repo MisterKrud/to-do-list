@@ -19,7 +19,7 @@ const tasksMain = () => {
   content.appendChild(itemContainer);
   }
 
-
+let buttonArray =[]
 
   const addNew = document.createElement("div");
   addNew.id="add-new";
@@ -248,11 +248,7 @@ addNewButton.addEventListener("click",() => {
 
 
 const card = document.getElementById("item-card")
-// card.addEventListener("change", populateDomItems(items))
 
-  
-
-  //checkbox complete event listener
  populateDomItems(items)
   
 
@@ -273,7 +269,7 @@ const card = document.getElementById("item-card")
         itemToRestore.classList.remove("completed-item");
      itemToRestore.classList.add("selected")
      
-          // itemContainer.removeChild(itemToRestore);
+       
       itemContainer.prepend(itemToRestore);
         box.classList.add("incomplete");
         box.classList.remove("complete");
@@ -293,26 +289,27 @@ const card = document.getElementById("item-card")
         itemDeleteButton.id = `${boxParentId}-delete`
         itemDeleteButton.className = 'item-delete-button'
         itemDeleteButton.innerText = "x";
+        buttonArray.push(itemDeleteButton)
         const completedItemContent = completedItemToShift.querySelector(".item-content")
         completedItemToShift.removeChild(completedItemContent)
         completedItemToShift.appendChild(completedItemContent)
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item")
 
-
-
- const itemDeleteButtons = document.querySelectorAll(".item-delete-button")
-   console.log(`Delete buttons: ${itemDeleteButtons}`)
-   itemDeleteButtons.forEach(button =>  
-   button.addEventListener("click", () => {
-          
-          console.table(items);
-          const itemPendingDelete = button.parentElement;
-          
-          const itemPendingDeleteId = button.parentElement.id;
+        itemDeleteButton.addEventListener("click", () => {
+console.table(items);
+          const itemPendingDelete = itemDeleteButton.parentElement;
+        
+          const itemPendingDeleteId = itemDeleteButton.parentElement.id;
           console.log(`parent id: ${itemPendingDeleteId}` )
-          console.log(`button id" ${button.id}`)
-          const itemPendingDeleteIndex = items.findIndex(item => item.id === itemPendingDeleteId)
+          console.log(`button id" ${itemDeleteButton.id}`)
+          const itemPendingDeleteIndex = items.findIndex(item => {
+            item.id.toLowerCase() === itemPendingDeleteId.toLowerCase()
+           console.log(`Item ID: [${item.id}] | Pending ID: [${itemPendingDeleteId}]`);
+            return item.id == itemPendingDeleteId
+          })
+
+          console.log(`index ${itemPendingDeleteIndex}`)
           console.log('deleting:')
           console.table(items[itemPendingDeleteIndex])
           
@@ -320,23 +317,53 @@ const card = document.getElementById("item-card")
           itemContainer.removeChild(itemPendingDelete)
           console.table(items)
           console.table(localStorage)
+        })
+
+//  const itemDeleteButtons = document.querySelectorAll(".item-delete-button")
+//  const deleteButtonArray = Array.from(buttonArray)
+//    console.log(`Delete buttons: ${itemDeleteButtons}`)
+//    buttonArray.forEach(button =>  
+//    button.addEventListener("click", () => {
+          
+//           console.table(items);
+//           const itemPendingDelete = button.parentElement;
+        
+//           const itemPendingDeleteId = button.parentElement.id;
+//           console.log(`parent id: ${itemPendingDeleteId}` )
+//           console.log(`button id" ${button.id}`)
+//           const itemPendingDeleteIndex = items.findIndex(item => {
+//             item.id.toLowerCase() === itemPendingDeleteId.toLowerCase()
+//            console.log(`Item ID: [${item.id}] | Pending ID: [${itemPendingDeleteId}]`);
+//             return item.id == itemPendingDeleteId
+//           })
+
+//           console.log(`index ${itemPendingDeleteIndex}`)
+//           console.log('deleting:')
+//           console.table(items[itemPendingDeleteIndex])
+          
+//           deleteToDoItem(items[itemPendingDeleteIndex])
+//           itemContainer.removeChild(itemPendingDelete)
+//           console.table(items)
+//           console.table(localStorage)
       
           
-        })
+//         })
     
-) 
-itemDeleteButtons.forEach(button =>{
-  button.addEventListener("mouseover", ()=> {
-    const itemPendingDelete = button.parentElement;
+// ) 
+// buttonArray.forEach(button =>{
+//   button.addEventListener("mouseover", ()=> {
+//     const itemPendingDelete = button.parentElement;
           
-          const itemPendingDeleteId = button.parentElement.id;
-          const itemPendingDeleteIndex = items.findIndex(item => item.id === itemPendingDeleteId)
-    console.log(`id of button ${button.id}`)
-    console.log(`id of parent: ${button.parentElement.id}`)
-    console.log(`itemPendingDelete.id: ${itemPendingDeleteId}`)
-    console.log(`item to delte index: ${itemPendingDeleteIndex}`)
-})
-})
+//           const itemPendingDeleteId = button.parentElement.id;
+//           const itemPendingDeleteIndex = items.findIndex(item => item.id === itemPendingDeleteId)
+//     console.log(`id of button ${button.id}`)
+//     console.log(`id of parent: ${button.parentElement.id}`)
+//     console.log(`itemPendingDelete.id: ${itemPendingDeleteId}`)
+//     console.table(items);
+//     console.log(`item to delete index: ${itemPendingDeleteIndex}`)
+//     console.table(buttonArray)
+// })
+// })
 
 
       
