@@ -177,7 +177,13 @@ input[type="checkbox"]:is(.complete) {
 .completed-item>.item-header{
     margin: auto 10px auto 5px;
 }
-
+.completed-item>div{
+    
+    position: relative;
+    top: 3px;
+    left: -20px;
+  
+}
 .notes{
     font-size: 12px;
     font-style: italic;
@@ -206,7 +212,7 @@ input[type="checkbox"]:is(.complete) {
 }
 
 .completed-item{
- display: flex;
+ display:flex;
     align-items: center;
 }
 
@@ -221,8 +227,10 @@ input[type="checkbox"]:is(.complete) {
     justify-content: center;
     padding: 5px;
     border-radius: 50%;
-    /* position: relative;
-    margin: -12px 0 0 5px;  */
+    position: relative;
+    top: 2px;
+    left: -4px;
+    /* margin: -12px 0 0 5px;  */
    
 }
 
@@ -451,6 +459,14 @@ select{
 }
 
 
+hr{
+
+height: .2px;
+width: 90%;
+    margin: 25px auto;
+color:#b4b4b4;
+
+}
 /* #item-card>*{
     margin-top: 0;
     margin-bottom: 0;

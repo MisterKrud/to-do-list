@@ -12,9 +12,14 @@ import {deletion } from "./deletion.js";
 
 
 // localStorage.clear();
-// import { checkStorage } from "./saveItems.js";
 
 
+// createNew('Sweep','With a broom','2025-05-31','High',undefined,undefined,undefined);
+// createNew('Mow','Backyard only','2025-05-16','Low','',undefined,undefined);
+// createNew('Clean car','Use car wash',undefined,undefined,undefined,undefined);
+// createNew('Sweep again','With a broom','2025-10-12','High');
+// createNew('Trim','Front yard with whippersnipper','2025-06-14','Low',undefined,undefined,undefined);
+// createNew('Vacuum','Kitchen and Laundry',undefined,undefined,undefined,undefined);
 
 
 
@@ -23,7 +28,7 @@ import {deletion } from "./deletion.js";
 // import { menu } from "./menu.js"
 // import { about } from "./about.js"
 const content = document.getElementById("content");
-const indexBar = document.getElementById("index-bar");
+// const indexBar = document.getElementById("index-bar");
 // const navButtons = document.querySelectorAll("button");
 // const buttonOne = navButtons[0];
 // const buttonTwo = navButtons[1];
@@ -42,12 +47,7 @@ getItemsFromStorage();
 populateCategories();
 
 // console.log('createNew test');
-// createNew('Sweep','With a broom','2025-05-31','High',undefined,undefined,undefined);
-// createNew('Mow','Backyard only','2025-05-16','Low','',undefined,undefined);
-// createNew('Clean car','Use car wash',undefined,undefined,undefined,undefined);
-// createNew('Sweep again','With a broom','2025-10-12','High');
-// createNew('Trim','Front yard with whippersnipper','2025-06-14','Low',undefined,undefined,undefined);
-// createNew('Vacuum','Kitchen and Laundry',undefined,undefined,undefined,undefined);
+
 
 
 // console.log(`Manage categories tests:`)
@@ -103,4 +103,4 @@ window.setNewCategory = setNewCategory;
 window.filter = filter
 
 
-// console.log('index')
+console.log('index')

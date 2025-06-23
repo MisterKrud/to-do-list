@@ -1,10 +1,15 @@
 import { items } from "./manageItems";
 import { toggleComplete, deleteToDoItem } from "./manageItems";
 import { categories, filter, filteredCat } from "./manageCategories";
-import { tasksIndex } from "./tasksIndex";
+import { tasksIndex, createProjectList } from "./tasksIndex";
 import { itemCardView } from "./itemCard";
 import { createNew as saveNew } from "./newItem";
 const tasksMain = () => {
+
+
+  console.log('tasksMain')
+
+  //create dom elements for main card
   const content = document.getElementById("content");
   const itemContainer = document.createElement("div");
   itemContainer.setAttribute("id", "item-container");
@@ -83,6 +88,7 @@ const tasksMain = () => {
     highlightSelectedItem();
   };
 
+  //Add listeners to checkboxes
   const addCheckBoxListeners = () => {
  const checkBoxes = document.querySelectorAll(".check-box");
   checkBoxes.forEach((box) => {
@@ -90,6 +96,8 @@ const tasksMain = () => {
       console.log(`box clicked`);
       const boxParentId = box.parentElement.id;
       const idIndex = items.findIndex((item) => item.id === boxParentId);
+      //Restore complete item to main list
+      
       if (box.getAttribute("class") === "check-box complete") {
         const itemToRestore = document.getElementById(boxParentId);
         itemToRestore.removeChild(itemToRestore.querySelector("button"));
@@ -98,12 +106,21 @@ const tasksMain = () => {
         itemContainer.prepend(itemToRestore);
         box.classList.add("incomplete");
         box.classList.remove("complete");
+        if(document.querySelector(".complete")===null){
+          const border = document.querySelector("HR")
+          itemContainer.removeChild(border)
+        }
       } else {
+        //Mark item as complete and move to the bottom of document
         box.classList.add("complete");
         box.classList.remove("incomplete");
         const completedItemToShift = document.getElementById(boxParentId);
         completedItemToShift.classList.remove("selected");
         itemContainer.removeChild(completedItemToShift);
+        if(document.querySelector(".complete") === null){
+          const border = document.createElement("HR");
+          itemContainer.appendChild(border)
+        }
         itemContainer.appendChild(completedItemToShift);
         const itemDeleteButton = document.createElement("button");
         itemDeleteButton.id = `${boxParentId}-delete`;
@@ -115,6 +132,8 @@ const tasksMain = () => {
         completedItemToShift.appendChild(completedItemContent);
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item");
+
+        //Delete item permanently
         itemDeleteButton.addEventListener("click", () => {
           console.table(items);
           const itemPendingDelete = itemDeleteButton.parentElement;
@@ -132,6 +151,7 @@ const tasksMain = () => {
           console.log("deleting:");
           console.table(items[itemPendingDeleteIndex]);
           deleteToDoItem(items[itemPendingDeleteIndex]);
+          itemPendingDelete.className=''
           itemContainer.removeChild(itemPendingDelete);
           console.table(items);
           console.table(localStorage);
@@ -158,6 +178,8 @@ const tasksMain = () => {
       });
     });
   };
+
+  //Create Item card and place in DOM
   const createItemCard = (selectedItem) => {
     content.removeChild(itemCard);
     selectedItem.classList.add("selected");
@@ -168,36 +190,48 @@ const tasksMain = () => {
     itemCard.show();
     itemCard.classList.add("visible");
   };
+
+  //Event listener for new item name
   newItemName.addEventListener("change", () => {
     addNewButton.focus();
   });
+
+  //Event listener for 'new' button
   addNewButton.addEventListener("click", () => {
     saveNew(newItemName.value);
     itemContainer.innerHTML = "";
-    populateDomItems(items);
+
+    populateDomItems(items.sort());
     
     addCheckBoxListeners()
     const newItem = document.querySelector(".item-list-view");
     createItemCard(newItem);
   });
-  const card = document.getElementById("item-card");
-  populateDomItems(items);
+
+
+  // const card = document.getElementById("item-card");
+  populateDomItems(items.sort());
    
-   addCheckBoxListeners()
+   addCheckBoxListeners();
   
-  const updateButton = document.getElementById("update-button");
+  // const updateButton = document.getElementById("update-button");
+
+  //Event listener for project filter
   const projects = Array.from(document.querySelectorAll(".project-name"));
   console.log(`itemContainer: ${itemContainer}`);
   projects.forEach((proj) => {
     const allItems = Array.from(document.querySelectorAll(".category"));
-    const allTasks = document.querySelectorAll(".item-list-view");
+    
     proj.addEventListener("click", () => {
+      const allTasks = document.querySelectorAll(".item-list-view");
       projects.forEach((projName) => projName.classList.remove("active"));
       proj.classList.add("active");
       if (proj.id === "all") {
         itemContainer.innerHTML = "";
         itemContainer.appendChild(addNew);
-        allTasks.forEach((task) => itemContainer.prepend(task));
+        populateDomItems(items.sort());
+        addCheckBoxListeners();
+        // allTasks.forEach((task) => itemContainer.prepend(task));
       } else {
         const projectItems = allItems.filter(
           (item) => item.textContent === proj.textContent
@@ -208,11 +242,12 @@ const tasksMain = () => {
           const categoryParent = projectItem.parentElement;
           const itemElement = categoryParent.parentElement;
           document.querySelector("#item-container").prepend(itemElement);
+          addCheckBoxListeners();
         });
       }
     });
   });
   return itemContainer;
 };
-console.log("tasksMain");
+
 export { tasksMain };
