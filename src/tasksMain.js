@@ -9,6 +9,8 @@ const tasksMain = () => {
 
   console.log('tasksMain')
 
+  const createDomStructure = () =>{
+
   //create dom elements for main card
   const content = document.getElementById("content");
   const itemContainer = document.createElement("div");
@@ -36,15 +38,24 @@ const tasksMain = () => {
   if (!cardInDom) {
     content.appendChild(itemCard);
   }
+  const anotherTest = () => console.log('Just testing')
+
+  return {itemContainer, content, addNew, itemCard, newItemName, addNewButton}
+  }
+  const dom =  createDomStructure()
+ 
+// querySelector()
+
   //Put itmes from array in DOM
   const populateDomItems = (arr) => {
+    
     console.log(`running populateDomItems for ${arr}`);
-    itemContainer.innerHTML = "";
-    itemContainer.appendChild(addNew);
-    newItemName.value = "";
-    newItemName.placeholder = "Add task";
-    addNew.append(addNewButton, newItemName);
-    arr.forEach((item) => {
+    dom.itemContainer.innerHTML = "";
+    dom.itemContainer.appendChild(dom.addNew);
+    dom.newItemName.value = "";
+    dom.newItemName.placeholder = "Add task";
+    dom.addNew.append(dom.addNewButton, dom.newItemName);
+   const taskItemElements =  arr.map((item) => {
       const completeClass = () => (item.complete ? "complete" : "incomplete");
       // console.log(`item.title: ${item.title}`);
       const itemListView = document.createElement("div");
@@ -80,13 +91,16 @@ const tasksMain = () => {
       checkBox.setAttribute("class", "check-box");
       checkBox.id = `check-${item.id}`;
       checkBox.classList.add(completeClass());
-      itemContainer.appendChild(itemListView);
+      dom.itemContainer.appendChild(itemListView);
       itemListView.append(checkBox, title, itemContent);
       itemContent.append(category, dueDate);
       return itemListView;
     });
     highlightSelectedItem();
+    return taskItemElements
   };
+
+
 
   //Add listeners to checkboxes
   const addCheckBoxListeners = () => {
@@ -97,6 +111,8 @@ const tasksMain = () => {
       console.log(`box clicked`);
       const boxParentId = box.parentElement.id;
       const idIndex = items.findIndex((item) => item.id === boxParentId);
+      const border = document.createElement("HR");
+          border.id = 'border'
       //Restore complete item to main list
       
       if (box.getAttribute("class") === "check-box complete") {
@@ -104,12 +120,12 @@ const tasksMain = () => {
         itemToRestore.removeChild(itemToRestore.querySelector("button"));
         itemToRestore.classList.remove("completed-item");
         itemToRestore.classList.add("selected");
-        itemContainer.prepend(itemToRestore);
+        dom.itemContainer.prepend(itemToRestore);
         box.classList.add("incomplete");
         box.classList.remove("complete");
         if(document.querySelector(".complete")===null){
-          const border = document.querySelector("HR")
-          itemContainer.removeChild(border)
+         
+          dom.itemContainer.removeChild(document.getElementById("border"))
         }
       } else {
         //Mark item as complete and move to the bottom of document
@@ -117,13 +133,12 @@ const tasksMain = () => {
         box.classList.remove("incomplete");
         const completedItemToShift = document.getElementById(boxParentId);
         completedItemToShift.classList.remove("selected");
-        itemContainer.removeChild(completedItemToShift);
+        dom.itemContainer.removeChild(completedItemToShift);
         if(document.querySelector(".complete") === null){
-          const border = document.createElement("HR");
-          border.id = 'border'
-          itemContainer.appendChild(border)
+          
+          dom.itemContainer.appendChild(border)
         }
-        itemContainer.appendChild(completedItemToShift);
+        dom.itemContainer.appendChild(completedItemToShift);
         const itemDeleteButton = document.createElement("button");
         itemDeleteButton.id = `${boxParentId}-delete`;
         itemDeleteButton.className = "item-delete-button";
@@ -154,9 +169,9 @@ const tasksMain = () => {
           console.table(items[itemPendingDeleteIndex]);
           deleteToDoItem(items[itemPendingDeleteIndex]);
           itemPendingDelete.className=''
-          itemContainer.removeChild(itemPendingDelete);
-          if(itemContainer.lastChild.id === 'border'){
-            itemContainer.removeChild(document.getElementById('border'))
+          dom.itemContainer.removeChild(itemPendingDelete);
+          if(dom.itemContainer.lastChild.id === 'border'){
+            dom.itemContainer.removeChild(document.getElementById("border"))
           }
           console.table(items);
           console.table(localStorage);
@@ -168,6 +183,7 @@ const tasksMain = () => {
 }
   //highlight selected item
   const highlightSelectedItem = () => {
+    
     console.log("highlighting Selected item");
     const itemListView = document.querySelectorAll(".item-list-view");
     itemListView.forEach((item) => {
@@ -188,26 +204,29 @@ const tasksMain = () => {
   //Create Item card and place in DOM
   const createItemCard = (selectedItem) => {
     console.log(`Creating card for ${selectedItem}`)
-    content.removeChild(itemCard);
+    dom.content.removeChild(dom.itemCard);
     selectedItem.classList.add("selected");
-    content.appendChild(itemCard);
-    itemCard.innerHTML = "";
-    content.appendChild(itemCardView());
-    content.classList.add("three-columns");
-    itemCard.show();
-    itemCard.classList.add("visible");
+    dom.content.appendChild(dom.itemCard);
+    dom.itemCard.innerHTML = "";
+    dom.content.appendChild(itemCardView());
+    dom.content.classList.add("three-columns");
+    dom.itemCard.show();
+    dom.itemCard.classList.add("visible");
   };
 
   //Event listener for new item name
-  newItemName.addEventListener("change", () => {
-    addNewButton.focus();
+
+  // console.log(typeof(newName))
+  // console.log(typeof(createDomStructure.newItemName))
+  dom.newItemName.addEventListener("change", () => {
+    dom.addNewButton.focus();
   });
 
   //Event listener for 'new' button
-  addNewButton.addEventListener("click", () => {
-    console.log(`Adding new item: ${newItemName} (button click)`)
-    saveNew(newItemName.value);
-    itemContainer.innerHTML = "";
+  dom.addNewButton.addEventListener("click", () => {
+    console.log(`Adding new item: ${dom.newItemName} (button click)`)
+    saveNew(dom.newItemName.value);
+    dom.itemContainer.innerHTML = "";
 
     populateDomItems(items.sort());
     
@@ -226,7 +245,7 @@ const tasksMain = () => {
 
   //Event listener for project filter
   const projects = Array.from(document.querySelectorAll(".project-name"));
-  console.log(`itemContainer: ${itemContainer}`);
+  console.log(`itemContainer: ${dom.itemContainer}`);
   projects.forEach((proj) => {
     const allItems = Array.from(document.querySelectorAll(".category"));
     
@@ -235,8 +254,8 @@ const tasksMain = () => {
       projects.forEach((projName) => projName.classList.remove("active"));
       proj.classList.add("active");
       if (proj.id === "all") {
-        itemContainer.innerHTML = "";
-        itemContainer.appendChild(addNew);
+        dom.itemContainer.innerHTML = "";
+        dom.itemContainer.appendChild(dom.addNew);
         populateDomItems(items.sort());
         addCheckBoxListeners();
         // allTasks.forEach((task) => itemContainer.prepend(task));
@@ -244,18 +263,18 @@ const tasksMain = () => {
         const projectItems = allItems.filter(
           (item) => item.textContent === proj.textContent
         );
-        itemContainer.innerHTML = "";
-        itemContainer.appendChild(addNew);
+        dom.itemContainer.innerHTML = "";
+        dom.itemContainer.appendChild(dom.addNew);
         projectItems.forEach((projectItem) => {
           const categoryParent = projectItem.parentElement;
           const itemElement = categoryParent.parentElement;
-          document.querySelector("#item-container").prepend(itemElement);
+          dom.prepend(itemElement);
           addCheckBoxListeners();
         });
       }
     });
   });
-  return itemContainer;
+ return  dom.itemContainer;
 };
 
 export { tasksMain };

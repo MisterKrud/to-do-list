@@ -27,7 +27,7 @@ import {deletion } from "./deletion.js";
 // import { main } from "./main.js"  
 // import { menu } from "./menu.js"
 // import { about } from "./about.js"
-const content = document.getElementById("content");
+// const content = document.getElementById("content");
 // const indexBar = document.getElementById("index-bar");
 // const navButtons = document.querySelectorAll("button");
 // const buttonOne = navButtons[0];
@@ -86,6 +86,7 @@ populateCategories();
 
 // console.table(localStorage)
 // console.table(items)
+
 content.appendChild(tasksIndex())
 content.append(tasksMain())
 // content.append(itemCardView())

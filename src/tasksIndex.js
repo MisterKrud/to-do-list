@@ -1,6 +1,17 @@
 import { categories } from "./manageCategories";
+// import { tasksMain } from "./tasksMain";
+
+
+
 
 const tasksIndex = () => {
+
+  
+    // const { itemContainer} = tasksMain();
+
+
+    // console.log(`From taksIndex: ${itemContainer}`)
+
     const content = document.getElementById("content");
     const indexBar = document.createElement("div");
     indexBar.id = "index-bar"
@@ -20,6 +31,9 @@ const tasksIndex = () => {
         project.id = category.toLowerCase();
         project.textContent = category;
         projectsList.appendChild(project);
+
+    // itemContainer.innerHTML += "did it work?"
+       
     })
 
     //This doesn't work here. Needs to be in main
