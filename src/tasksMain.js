@@ -90,6 +90,7 @@ const tasksMain = () => {
 
   //Add listeners to checkboxes
   const addCheckBoxListeners = () => {
+    console.log('Adding checkbox listeners')
  const checkBoxes = document.querySelectorAll(".check-box");
   checkBoxes.forEach((box) => {
     box.addEventListener("click", () => {
@@ -119,6 +120,7 @@ const tasksMain = () => {
         itemContainer.removeChild(completedItemToShift);
         if(document.querySelector(".complete") === null){
           const border = document.createElement("HR");
+          border.id = 'border'
           itemContainer.appendChild(border)
         }
         itemContainer.appendChild(completedItemToShift);
@@ -153,6 +155,9 @@ const tasksMain = () => {
           deleteToDoItem(items[itemPendingDeleteIndex]);
           itemPendingDelete.className=''
           itemContainer.removeChild(itemPendingDelete);
+          if(itemContainer.lastChild.id === 'border'){
+            itemContainer.removeChild(document.getElementById('border'))
+          }
           console.table(items);
           console.table(localStorage);
         });
@@ -163,7 +168,7 @@ const tasksMain = () => {
 }
   //highlight selected item
   const highlightSelectedItem = () => {
-    console.log("highlightSelected()");
+    console.log("highlighting Selected item");
     const itemListView = document.querySelectorAll(".item-list-view");
     itemListView.forEach((item) => {
       item.addEventListener("click", () => {
@@ -175,12 +180,14 @@ const tasksMain = () => {
           return;
         }
         createItemCard(item);
+         
       });
     });
   };
 
   //Create Item card and place in DOM
   const createItemCard = (selectedItem) => {
+    console.log(`Creating card for ${selectedItem}`)
     content.removeChild(itemCard);
     selectedItem.classList.add("selected");
     content.appendChild(itemCard);
@@ -198,6 +205,7 @@ const tasksMain = () => {
 
   //Event listener for 'new' button
   addNewButton.addEventListener("click", () => {
+    console.log(`Adding new item: ${newItemName} (button click)`)
     saveNew(newItemName.value);
     itemContainer.innerHTML = "";
 
