@@ -42,7 +42,7 @@ const tasksMain = () => {
   }
   const anotherTest = () => console.log('Just testing')
 
-  return {itemContainer, content, addNew, itemCard, newItemName, addNewButton}
+  return {itemContainer, content, addNew, itemCard, newItemName, newTask, addNewButton}
   }
   const dom =  createDomStructure()
  
@@ -93,7 +93,7 @@ const tasksMain = () => {
       checkBox.setAttribute("class", "check-box");
       checkBox.id = `check-${item.id}`;
       checkBox.classList.add(completeClass());
-      dom.itemContainer.appendChild(itemListView);
+      dom.itemContainer.prepend(itemListView);
       itemListView.append(checkBox, title, itemContent);
       itemContent.append(category, dueDate);
       return itemListView;
@@ -226,20 +226,23 @@ const tasksMain = () => {
 
   //Event listener for 'new' button
   dom.addNewButton.addEventListener("click", () => {
-    console.log(`Adding new item: ${dom.newItemName} (button click)`)
+    console.log(`Adding new item: ${dom.newItemName.value} (button click)`)
+    // const newItemid = dom.newItemName.id
+    console.log(dom.newItemName.id)
     saveNew(dom.newItemName.value);
     dom.itemContainer.innerHTML = "";
 
-    populateDomItems(items.sort());
+    populateDomItems(items);
     
-    addCheckBoxListeners()
-    const newItem = document.querySelector(".item-list-view");
+    addCheckBoxListeners();
+    const newItem = document.querySelector('.item-list-view');
+    //  const newItem = document.getElementById(newItemId);
     createItemCard(newItem);
   });
 
 
   // const card = document.getElementById("item-card");
-  populateDomItems(items.sort());
+  populateDomItems(items);
    
    addCheckBoxListeners();
   
@@ -261,7 +264,7 @@ const tasksMain = () => {
       if (proj.id === "all") {
         dom.itemContainer.innerHTML = "";
         dom.itemContainer.appendChild(dom.addNew);
-        populateDomItems(items.sort());
+        populateDomItems(items);
         addCheckBoxListeners();
         // allTasks.forEach((task) => itemContainer.prepend(task));
       } else {

@@ -131,17 +131,21 @@ const itemCardView = () => {
     priorityDiv.appendChild(priorityLabelText);
 
     //   const prioritySelector = (() =>{
-    const priorityList = document.createElement("select");
-    priorityList.id = "priority";
+    const priorityList = document.createElement("div");
+    const prioritySelect = document.createElement("select")
+    prioritySelect.id = 'priority-select'
+    priorityList.id = `priority-${currentItem.priority.toLowerCase()}`;
     priorityList.setAttribute("name", "priorities");
     priorityDiv.appendChild(priorityList);
+    priorityList.appendChild(prioritySelect);
 
     priority.forEach((item) => {
       const priorityOption = document.createElement("option");
       priorityOption.className = "priority-option";
       priorityOption.textContent = item;
       priorityOption.setAttribute("value", item.toLowerCase());
-      priorityList.appendChild(priorityOption);
+      priorityOption.id = item.toLowerCase()
+      prioritySelect.appendChild(priorityOption);
 
       if (item.toLowerCase() === currentItem.priority) {
         priorityOption.selected = true;
@@ -213,7 +217,7 @@ const saveTaskChanges = (item) => {
     
     projectList.appendChild(newProject);
     location.reload()
-    
+
 
 }
     

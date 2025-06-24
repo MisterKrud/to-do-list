@@ -300,7 +300,7 @@ border: none;
     font-size: 22px;
     margin:30px 0 0 0;
     border: none;
-    height: 25px;
+    height: 30px;
     resize: none;
     overflow: hidden;
     
@@ -358,6 +358,10 @@ border: none;
     /* background: linear-gradient(#ffffff, #f1f1f1, #ffffff,#f1f1f1); */
 
     
+}
+
+#new-category{
+    height: 10px;
 }
 
 button{
@@ -448,7 +452,7 @@ textarea{
       border: none;
     box-shadow:  0 0px 18px 0 rgba(0, 0, 0, .08);
     /* height: 2.4rem; */
-    /* padding: 0 2rem; */
+    padding: .1rem .6rem;
     /* margin: 0 ; */
     outline: none;
     border-radius: 8px;
@@ -469,9 +473,74 @@ width: 90%;
 color:#b4b4b4;
 
 }
-/* #item-card>*{
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+
+/* #priority-select{
+    position: relative;
+}
+
+#priority-select select{
+display: none;
+}
+
+#priority-select hide{
+    display: none;
+} */
+
+.priority-option{
+    color: white;
+     font-weight: bold;
+      padding: 10px;
+       ;
+}
+#low, #priority-low{
+  color: white;
+    background-color: green;
+    font-weight: bold;
+      padding: 3px;
+    margin-left: 4px;
+    border-radius: 4px;
+     
+}
+
+
+
+#medium, #priority-medium{
+    color: white;
+   background-color:rgb(90, 218, 5);
+    font-weight: bold;
+    padding: 3px;
+    margin-left: 4px;
+    border-radius: 4px;
+     position: relative;
+}
+#high, #priority-high{
+    color: white;
+    background-color: orange;
+     font-weight: bold;
+       padding: 3px;
+    margin-left: 4px;
+    border-radius: 4px;
+     position: relative;
+}
+#urgent, #priority-urgent{
+    color: white;
+    background-color: red;
+     font-weight: bold;
+       padding: 3px;
+    margin-left: 4px;
+    border-radius: 4px;
+     position: relative;
+}
+
+.priority-list{
+    
+     position: relative;
+}
+
+.priority-select, .priority-select hide{
+    appearance: base-select;
+    display: none;
+}
+/* #priority{
+    background-color: ;
 } */

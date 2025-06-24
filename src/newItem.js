@@ -1,6 +1,6 @@
 
 //Date formatter
-import {lightFormat, parseISO } from "date-fns";
+import {lightFormat, parseISO, constructNow } from "date-fns";
 import { TodoItem  as ToDo } from "./toDoClass.js";
 import { categories } from "./manageCategories.js"
 import { items, saveItem as save } from "./manageItems.js"
@@ -10,21 +10,23 @@ import { items, saveItem as save } from "./manageItems.js"
 //To-Do Item class
 // const Todo = TodoItem;
 
-const today = Date.now().toLocaleString("en-AU")
+const today = lightFormat(new Date(), 'd/M/yy')
+console.log(today)
+const thisDay = new Date();
+console.log(thisDay)
+console.log(lightFormat(new Date(), 'd/M/yy'))
 
 //Create New item function
 const createNew = (
   title,
   description,
-  dueDate = lightFormat(new Date(), "d/M/yy"),
+  dueDate = new Date(),
   priority = 'Medium',
   notes = "",
   complete = false,
   category = "Default"
 ) => {
-  if (dueDate = null) {
-    dueDate = new Date(), today();
-  }
+
   
   let newItem = items.push(
     new ToDo(
