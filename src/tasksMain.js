@@ -4,6 +4,8 @@ import { categories, filter, filteredCat } from "./manageCategories";
 import { tasksIndex, createProjectList } from "./tasksIndex";
 import { itemCardView } from "./itemCard";
 import { createNew as saveNew } from "./newItem";
+
+
 const tasksMain = () => {
 
 
@@ -242,9 +244,12 @@ const tasksMain = () => {
    addCheckBoxListeners();
   
   // const updateButton = document.getElementById("update-button");
-
+  // const {categoryItems, indexBar} = tasksIndex()
+// console.log(`typeofcategoryitems: ${typeof(indexBar)}`)
+// console.log(`typeofindexbar: ${typeof(indexBar)}`)
   //Event listener for project filter
   const projects = Array.from(document.querySelectorAll(".project-name"));
+
   console.log(`itemContainer: ${dom.itemContainer}`);
   projects.forEach((proj) => {
     const allItems = Array.from(document.querySelectorAll(".category"));
@@ -268,8 +273,13 @@ const tasksMain = () => {
         projectItems.forEach((projectItem) => {
           const categoryParent = projectItem.parentElement;
           const itemElement = categoryParent.parentElement;
-          dom.prepend(itemElement);
+          dom.itemContainer.prepend(itemElement);
           addCheckBoxListeners();
+          // dom.content.removeChild(indexBar)
+       
+          // const {projectsIndex} = tasksIndex()
+          // console.log(projectsIndex);
+
         });
       }
     });

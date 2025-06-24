@@ -5,7 +5,6 @@ import { lightFormat } from "date-fns";
 import { categories, setNewCategory } from "./manageCategories";
 import { tasksIndex } from "./tasksIndex";
 
-// const populateDomItems = tasksMain
 
 
 const itemCardView = () => {
@@ -14,28 +13,25 @@ const itemCardView = () => {
   const itemCard = document.getElementById("item-card");
   const activeItem = document.querySelector(".selected");
   const activeItemId = activeItem.getAttribute("id");
+//   const {indexBar, categoryItems} = tasksIndex()
   if (!activeItemId) {
     return
   } else {
 
    
 
-    // const renderProjectList = () =>{
-    //     indexBar.removeChild(projectList);
-        
-    // }
-
+ 
 
 
     
-    console.log(activeItemId);
+
 
     //Get selected task for card
     const currentItemIndex = items.findIndex(
       (item) => item.id === activeItemId
     );
     const currentItem = items[currentItemIndex];
-    console.log(`current item: ${currentItem}`);
+
 
 //Task title
     const title = document.createElement("textarea");
@@ -181,8 +177,7 @@ const itemCardView = () => {
 
     notes.addEventListener("change", () => {
       currentItem.notes = notes.value;
-      console.log(`new note: ${notes.value}`);
-      console.log(`new note: ${currentItem.notes}`);
+    
       saveItem(currentItem);
       notes.textContent = currentItem.notes;
     });
@@ -206,14 +201,19 @@ const itemCardView = () => {
   category.setAttribute("name","item-card-categories");
   const currentCategory = activeItem.querySelector(".category")
    const projectList = document.getElementById("projects-list");
-    const indexBar = document.getElementById("index-bar")
+    const indexBar = document.getElementById("index-bar");
+    const projectsHeader = document.getElementById("projects-header");
+
 const saveTaskChanges = (item) => {
     saveItem(item);
     const newProject = document.createElement("li")
     newProject.className = "project-name";
     newProject.id = item.category.toLowerCase()
     newProject.textContent = item.category
+    
     projectList.appendChild(newProject);
+    location.reload()
+    
 
 }
     
@@ -250,9 +250,9 @@ saveItem(currentItem);
 
 })
 
-   //new project category category
-
-   
+   //new project category 
+const newProjectCategory = () =>{
+  
     const createNewCategory = document.createElement("textArea");
     createNewCategory.id="new-category";
     createNewCategory.placeholder ='+ New project'
@@ -292,6 +292,10 @@ saveItem(currentItem);
    
     console.table(items);
   })
+  return {createNewCategory}
+}
+
+newProjectCategory();
     
 //update and cancel buttons for card view
     const updateButton = document.createElement("button");

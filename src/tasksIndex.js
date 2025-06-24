@@ -1,5 +1,6 @@
 import { categories } from "./manageCategories";
-// import { tasksMain } from "./tasksMain";
+import { tasksMain } from "./tasksMain";
+import { itemCardView } from "./itemCard";
 
 
 
@@ -11,6 +12,8 @@ const tasksIndex = () => {
 
 
     // console.log(`From taksIndex: ${itemContainer}`)
+
+    const createProjectIndex = () =>{
 
     const content = document.getElementById("content");
     const indexBar = document.createElement("div");
@@ -25,7 +28,8 @@ const tasksIndex = () => {
     content.appendChild(indexBar)
  indexBar.append(projectsHeader, projectsList);
  console.log(categories)
-   categories.forEach(category => {
+  const categoryItems = () => categories.map(category => {
+    
         const project = document.createElement("li")
         project.className = "project-name";
         project.id = category.toLowerCase();
@@ -35,6 +39,24 @@ const tasksIndex = () => {
     // itemContainer.innerHTML += "did it work?"
        
     })
+    categoryItems()
+    return { categoryItems, indexBar, projectsHeader, projectsList }
+}
+// createProjectIndex()
+
+const projectsIndex = createProjectIndex()
+
+// const reFactorIndexBar = ()  =>{
+//     const {createNewCategory} = itemCardView();
+   
+//     createNewCategory.addEventListener("change", () => {
+//         projectsIndex.projectsList.innerHTML = ''
+//         return projectsIndex.categoryItems();
+//     })
+// }
+
+
+
 
     //This doesn't work here. Needs to be in main
     //   const projects =  Array.from(document.querySelectorAll(".project-name"))
@@ -64,6 +86,6 @@ const tasksIndex = () => {
 //         })
 //     })
 console.log('tasksIndex')
-return indexBar;
+return projectsIndex.indexBar
 }
 export { tasksIndex }

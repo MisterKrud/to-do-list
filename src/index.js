@@ -87,8 +87,8 @@ populateCategories();
 // console.table(localStorage)
 // console.table(items)
 
-content.appendChild(tasksIndex())
-content.append(tasksMain())
+// content.appendChild(tasksIndex())
+content.append(tasksIndex(),tasksMain())
 // content.append(itemCardView())
 
 
