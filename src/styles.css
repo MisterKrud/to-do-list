@@ -485,51 +485,61 @@ display: none;
 #priority-select hide{
     display: none;
 } */
-
-.priority-option{
-    color: white;
-     font-weight: bold;
-      padding: 10px;
-       ;
+#priority-container>p{
+    margin-right: 10px;
 }
-#low, #priority-low{
-  color: white;
-    background-color: green;
+
+#priority-container>div{
     font-weight: bold;
-      padding: 3px;
-    margin-left: 4px;
-    border-radius: 4px;
+    color: white;
+    border-radius: 5px;
+    width: 6rem;
+    
+    
+}
+
+#priority-container{
+   padding: 3px;
+}
+
+#low, #priority-low{
+  
+    background-color: green;
+    
+    
+    
+   
      
 }
 
 
 
 #medium, #priority-medium{
-    color: white;
+    
    background-color:rgb(90, 218, 5);
-    font-weight: bold;
-    padding: 3px;
-    margin-left: 4px;
-    border-radius: 4px;
-     position: relative;
+    
+    
+    
+   
+     
 }
 #high, #priority-high{
-    color: white;
+   
     background-color: orange;
-     font-weight: bold;
-       padding: 3px;
-    margin-left: 4px;
-    border-radius: 4px;
-     position: relative;
+  
+      
+   
+ 
+   
 }
 #urgent, #priority-urgent{
-    color: white;
+    
     background-color: red;
-     font-weight: bold;
-       padding: 3px;
-    margin-left: 4px;
-    border-radius: 4px;
-     position: relative;
+     
+      
+    
+    
+   
 }
 
 .priority-list{
@@ -537,10 +547,43 @@ display: none;
      position: relative;
 }
 
-.priority-select, .priority-select hide{
-    appearance: base-select;
-    display: none;
+.priority-option:first-of-type{
+    margin-top: 2px;
 }
-/* #priority{
-    background-color: ;
-} */
+
+.priority-select,::picker(select){
+    appearance: base-select;
+    border: none;
+}
+
+
+
+.priority-select::picker-icon{
+   margin:0 15px 2px 0;
+    transition: 0.4s rotate;
+}
+
+.priority-select:open::picker-icon{
+   
+    rotate: 180deg;
+}
+
+
+
+::picker(select){
+    border: none;
+}
+.priority-option{
+    width: 6rem;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+     font-weight: bold;
+     gap:5px;
+     padding:0 5px;
+    position: relative;
+    border-radius: 5px;
+       
+}
+
+

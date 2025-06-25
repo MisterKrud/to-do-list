@@ -133,11 +133,21 @@ const itemCardView = () => {
     //   const prioritySelector = (() =>{
     const priorityList = document.createElement("div");
     const prioritySelect = document.createElement("select")
-    prioritySelect.id = 'priority-select'
-    priorityList.id = `priority-${currentItem.priority.toLowerCase()}`;
+    const selectButton = document.createElement("button")
+    const selectedContent = document.createElement("selectedcontent")
+    selectButton.inert = true;
+    console.log(`inert? ${selectButton.inert}`)
+    prioritySelect.className = 'priority-select'
+    console.log(`currentItem.priority: ${currentItem.priority}`)
+    const currentItemPriority = currentItem.priority.toLowerCase()
+    priorityList.id = `priority-${currentItemPriority}`;
+    priorityList.class ="priority-list";
     priorityList.setAttribute("name", "priorities");
     priorityDiv.appendChild(priorityList);
     priorityList.appendChild(prioritySelect);
+    prioritySelect.appendChild(selectButton);
+    selectButton.appendChild(selectedContent);
+
 
     priority.forEach((item) => {
       const priorityOption = document.createElement("option");
@@ -147,23 +157,31 @@ const itemCardView = () => {
       priorityOption.id = item.toLowerCase()
       prioritySelect.appendChild(priorityOption);
 
-      if (item.toLowerCase() === currentItem.priority) {
+      if (item.toLowerCase() === currentItemPriority) {
         priorityOption.selected = true;
+        
       } else {
         
-        if (item.toLowerCase === "medium") {
+        if (item.toLowerCase() === "medium") {
           priorityOption.selected = true;
        
         }
       }
      
+      selectedContent.setAttribute("id",currentItemPriority)
+      prioritySelect.id =  currentItemPriority
+      priorityList.id = `priority-${currentItemPriority}`;
     });
 
-    priorityList.addEventListener("change", () => {
-      console.log("change");
-      const newPriority = priorityList.value;
 
-      currentItem.priority = newPriority;
+    prioritySelect.addEventListener("change", () => {
+      console.log("change");
+      const newPriority = prioritySelect.value;
+console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
+      currentItem.priority = newPriority.toLowerCase();
+     selectedContent.setAttribute("id",newPriority.toLowerCase())
+     prioritySelect.id =  newPriority.toLowerCase()
+     priorityList.id = `priority-${newPriority.toLowerCase()}`;
       saveItem(currentItem);
     });
 
