@@ -59,6 +59,7 @@ const tasksMain = () => {
     console.log(`running populateDomItems for ${arr}`);
     dom.itemContainer.innerHTML = "";
     dom.itemContainer.appendChild(dom.addNew);
+    dom.itemContainer.prepend(dom.siteHeader)
     dom.newItemName.value = "";
     dom.newItemName.placeholder = "Add task";
     dom.addNew.append(dom.addNewButton, dom.newItemName);
@@ -101,12 +102,13 @@ const tasksMain = () => {
       checkBox.setAttribute("class", "check-box");
       checkBox.id = `check-${item.id}`;
       checkBox.classList.add(completeClass());
+    
       dom.itemContainer.prepend(itemListView);
-      
+     
       itemListView.append(checkBox, title, itemContent);
       title.appendChild(priority)
       itemContent.append(category, dueDate);
-      dom.itemContainer.prepend(dom.siteHeader)
+     
       return itemListView;
     });
     highlightSelectedItem();
@@ -306,7 +308,9 @@ const tasksMain = () => {
        
           // const {projectsIndex} = tasksIndex()
           // console.log(projectsIndex);
-dom.itemContainer.prepend(dom.siteHeader, dom.addNew);
+dom.itemContainer.prepend(dom.addNew);
+dom.itemContainer.prepend(dom.siteHeader);
+
         });
       }
     });
