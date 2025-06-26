@@ -200,7 +200,7 @@ console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
     notes.id = "notes";
     notes.setAttribute("name", "notes");
     notes.setAttribute("cols", "100");
-    notes.setAttribute("rows", "6");
+    notes.setAttribute("rows", "8");
 
     notes.placeholder = "Add notes";
     notes.textContent = currentItem.notes;
