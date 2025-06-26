@@ -179,12 +179,16 @@ const itemCardView = () => {
       const newPriority = prioritySelect.value;
 console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
       currentItem.priority = newPriority.toLowerCase();
-       currentItem.className=`item-list-view ${newPriority.toLowerCase()}`
+      console.log(currentItem.priority)
+       const activeItemPriority = activeItem.querySelector(".priority")
+       const priorityText = activeItemPriority.textContent
+       console.log(`priorityText: ${priorityText}`)
        
      selectedContent.setAttribute("id",newPriority.toLowerCase())
      prioritySelect.id =  newPriority.toLowerCase()
      priorityList.id = `priority-${newPriority.toLowerCase()}`;
-     selectedContent.className = `item-list-view ${newPriority.toLowerCase()}`
+     activeItem.className = `item-list-view ${newPriority.toLowerCase()}`
+     activeItemPriority.textContent = newPriority;
       saveItem(currentItem);
     });
 
@@ -224,12 +228,15 @@ console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
     const category = document.createElement("select");
     category.id= "item-card-categories";
     projectsContainer.appendChild(category);
+    category.blur();
+    category.setAttribute("tabindex","-1")
    
   
   
     
   category.setAttribute("name","item-card-categories");
   const currentCategory = activeItem.querySelector(".category")
+  currentCategory.setAttribute("tabindex","-1")
    const projectList = document.getElementById("projects-list");
     const indexBar = document.getElementById("index-bar");
     const projectsHeader = document.getElementById("projects-header");
@@ -290,7 +297,8 @@ const newProjectCategory = () =>{
 
   //event listener for changing category
   createNewCategory.addEventListener("change", () =>{
-    const newProject = createNewCategory.value
+    const newProjectRaw = createNewCategory.value
+    const newProject = newProjectRaw.replace(/\s/g, '_');
     if(categories.includes(newProject)){
         console.log('category already exists - saving item in project with this name')
         saveItem(currentItem)

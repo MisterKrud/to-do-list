@@ -75,6 +75,7 @@ const tasksMain = () => {
       dueDate.className = "due-date";
       dueDate.textContent = `  | ${item.dueDate}`;
       const priority = document.createElement("p");
+      priority.className = "priority"
       priority.textContent = item.priority;
       itemListView.classList.add(`${item.priority.toLowerCase()}`)
       const notes = document.createElement("p");
@@ -228,6 +229,8 @@ const tasksMain = () => {
     dom.content.classList.add("three-columns");
     dom.itemCard.show();
     dom.itemCard.classList.add("visible");
+    const categoryList = document.getElementById("item-card-categories")
+    categoryList.blur();
   };
 
   //Event listener for new item name

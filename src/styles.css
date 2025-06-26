@@ -626,6 +626,7 @@ display: none;
 #medium, #priority-medium{
     
    background-color:var(--medium);
+   color: #352f36;
 
     
     
