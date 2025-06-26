@@ -74,7 +74,7 @@ const itemCardView = () => {
     saveItem(currentItem);
 
 //Task due-date
-    const dueDate = document.createElement("p");
+    const dueDate = document.createElement("div");
     dueDate.className = "item-card-date";
     dueDate.textContent = `Due: ${currentItem.dueDate}`;
 
@@ -179,11 +179,19 @@ const itemCardView = () => {
       const newPriority = prioritySelect.value;
 console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
       currentItem.priority = newPriority.toLowerCase();
+       currentItem.className=`item-list-view ${newPriority.toLowerCase()}`
+       
      selectedContent.setAttribute("id",newPriority.toLowerCase())
      prioritySelect.id =  newPriority.toLowerCase()
      priorityList.id = `priority-${newPriority.toLowerCase()}`;
+     selectedContent.className = `item-list-view ${newPriority.toLowerCase()}`
       saveItem(currentItem);
     });
+
+    //Create container for date and priority
+    const dateAndPriorityContainer = document.createElement("div")
+    dateAndPriorityContainer.id = "date-priority-container"
+
 
   
 //Create notes
@@ -192,7 +200,7 @@ console.log(`newPriority: ${newPriority}/${prioritySelect.value}`)
     notes.id = "notes";
     notes.setAttribute("name", "notes");
     notes.setAttribute("cols", "100");
-    notes.setAttribute("rows", "1");
+    notes.setAttribute("rows", "6");
 
     notes.placeholder = "Add notes";
     notes.textContent = currentItem.notes;
@@ -333,16 +341,19 @@ newProjectCategory();
 
     //Put card in dom
     itemCard.append(
+        projectsContainer,
       title,
-   
-      projectsContainer,
-      dueDate,
-      description,
-      priorityDiv,
+   description,
+      
+      
+      
+      
+      dateAndPriorityContainer,
       notes,
       complete,
       buttonDiv
     );
+    dateAndPriorityContainer.append(dueDate,priorityDiv,)
     buttonDiv.append(updateButton, cancelButton);
 
     const closeDialog = () => {

@@ -63,6 +63,7 @@ const tasksMain = () => {
       const itemListView = document.createElement("div");
       itemListView.className = "item-list-view";
       itemListView.id = item.id;
+      
       const title = document.createElement("p");
       title.className = "item-header";
       title.textContent = item.title;
@@ -75,6 +76,7 @@ const tasksMain = () => {
       dueDate.textContent = `  | ${item.dueDate}`;
       const priority = document.createElement("p");
       priority.textContent = item.priority;
+      itemListView.classList.add(`${item.priority.toLowerCase()}`)
       const notes = document.createElement("p");
       notes.className = "notes";
       notes.textContent = item.notes;
@@ -95,6 +97,7 @@ const tasksMain = () => {
       checkBox.classList.add(completeClass());
       dom.itemContainer.prepend(itemListView);
       itemListView.append(checkBox, title, itemContent);
+      title.appendChild(priority)
       itemContent.append(category, dueDate);
       return itemListView;
     });
@@ -113,13 +116,20 @@ const tasksMain = () => {
       console.log(`box clicked`);
       const boxParentId = box.parentElement.id;
       const idIndex = items.findIndex((item) => item.id === boxParentId);
+
       const border = document.createElement("HR");
           border.id = 'border'
       //Restore complete item to main list
       
       if (box.getAttribute("class") === "check-box complete") {
         const itemToRestore = document.getElementById(boxParentId);
+        const itemToRestoreTitle = itemToRestore.querySelector(".item-header")
+        const itemToRestorePriority = document.createElement("p");
+        const masterItem = items[idIndex];
+        itemToRestorePriority.textContent = masterItem.priority;
+        itemToRestoreTitle.appendChild(itemToRestorePriority);
         itemToRestore.removeChild(itemToRestore.querySelector("button"));
+        
         itemToRestore.classList.remove("completed-item");
         itemToRestore.classList.add("selected");
         dom.itemContainer.prepend(itemToRestore);
@@ -147,10 +157,14 @@ const tasksMain = () => {
         itemDeleteButton.innerText = "x";
         const completedItemContent =
           completedItemToShift.querySelector(".item-content");
+          const completedItemTitle = completedItemToShift.querySelector(".item-header");
+          const completedItemPriority = completedItemTitle.querySelector("p");
+          completedItemTitle.removeChild(completedItemPriority);
         completedItemToShift.removeChild(completedItemContent);
         completedItemToShift.appendChild(completedItemContent);
         completedItemToShift.appendChild(itemDeleteButton);
         completedItemToShift.classList.add("completed-item");
+        completedItemToShift.removeChild
 
         //Delete item permanently
         itemDeleteButton.addEventListener("click", () => {
