@@ -357,10 +357,10 @@ border: none;
     gap: 0;
 
 } */
-#item-card, .visible{
+/* #item-card, .visible{
     
     /* grid-template-rows: repeat(5, 1fr)  1fr 1fr  ; */
-}
+
 
 
 
