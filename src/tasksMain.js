@@ -15,12 +15,17 @@ const tasksMain = () => {
 
   //create dom elements for main card
   const content = document.getElementById("content");
+  
   const itemContainer = document.createElement("div");
   itemContainer.setAttribute("id", "item-container");
   const containerInDom = document.querySelector("#item-container") != null;
   if (!containerInDom) {
     content.appendChild(itemContainer);
   }
+  const siteHeader = document.createElement("div")
+  siteHeader.id = "site-header";
+  siteHeader.textContent = "To-Do Tasks"
+  itemContainer.appendChild(siteHeader);
   const addNew = document.createElement("div");
   addNew.id = "add-new";
   const newItemName = document.createElement("input");
@@ -42,7 +47,7 @@ const tasksMain = () => {
   }
   const anotherTest = () => console.log('Just testing')
 
-  return {itemContainer, content, addNew, itemCard, newItemName, newTask, addNewButton}
+  return {itemContainer, siteHeader, content, addNew, itemCard, newItemName, newTask, addNewButton}
   }
   const dom =  createDomStructure()
  
@@ -97,9 +102,11 @@ const tasksMain = () => {
       checkBox.id = `check-${item.id}`;
       checkBox.classList.add(completeClass());
       dom.itemContainer.prepend(itemListView);
+      
       itemListView.append(checkBox, title, itemContent);
       title.appendChild(priority)
       itemContent.append(category, dueDate);
+      dom.itemContainer.prepend(dom.siteHeader)
       return itemListView;
     });
     highlightSelectedItem();
@@ -299,11 +306,12 @@ const tasksMain = () => {
        
           // const {projectsIndex} = tasksIndex()
           // console.log(projectsIndex);
-
+dom.itemContainer.prepend(dom.siteHeader, dom.addNew);
         });
       }
     });
   });
+ 
  return  dom.itemContainer;
 };
 
